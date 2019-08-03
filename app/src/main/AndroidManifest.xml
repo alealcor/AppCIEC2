@@ -18,26 +18,26 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-                android:name=".InicioSesionActivity"
+                android:name=".Activities.InicioSesionActivity"
                 android:label="@string/inicio_sesion"
-                android:parentActivityName=".InicioSesionActivity">
+                android:parentActivityName=".Activities.InicioSesionActivity">
         </activity>
         <activity
-                android:name=".NoticiaActivity"
+                android:name=".Activities.NoticiaActivity"
                 android:label="@string/noticias"
-                android:parentActivityName=".NoticiaActivity">
+                android:parentActivityName=".Activities.NoticiaActivity">
         </activity>
         <activity
-            android:name=".RegistroActivity"
+            android:name=".Activities.RegistroActivity"
             android:label="@string/registro"
-            android:parentActivityName=".RegistroActivity" />
+            android:parentActivityName=".Activities.RegistroActivity" />
 
         <activity
-                android:name=".Info_InvestigacionesActivity"
+                android:name=".Activities.Info_InvestigacionesActivity"
                 android:label="Información"
-                android:parentActivityName=".InvestigacionesActivity"/>
+                android:parentActivityName=".Activities.InvestigacionesActivity"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/app_name"
             >
             <intent-filter>
@@ -47,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".InvestigacionesActivity"
+                android:name=".Activities.InvestigacionesActivity"
                 android:label="@string/investigaciones">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -56,7 +56,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".BoletinesPoliticaActivity"
+                android:name=".Activities.BoletinesPoliticaActivity"
                 android:label="Boletines Politica Economica">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -65,7 +65,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".DivulgacionesActivity"
+                android:name=".Activities.DivulgacionesActivity"
                 android:label="@string/Divulgaciones">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -74,7 +74,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".MapasActivity"
+                android:name=".Activities.MapasActivity"
                 android:label="@string/mapas">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -83,7 +83,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ConfiguracionesActivity"
+                android:name=".Activities.ConfiguracionesActivity"
                 android:label="@string/configuraciones">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

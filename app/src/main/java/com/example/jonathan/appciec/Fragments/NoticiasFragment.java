@@ -1,4 +1,4 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Fragments;
 
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
@@ -10,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.example.jonathan.appciec.Models.Noticia;
+import com.example.jonathan.appciec.Adapters.NoticiaAdapter;
+import com.example.jonathan.appciec.R;
 
 import java.util.ArrayList;
 
@@ -48,8 +51,42 @@ public class NoticiasFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         // Get the data.
-        initializeData();;
+        initializeData();
     }
+
+//    private void initializeData() {
+//        // Clear the existing data (to avoid duplication).
+//        mNoticiasData.clear();
+//
+//        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+//        String url = "http://www.ciec.espol.edu.ec/rest/node/20";
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//                    String html = response.getJSONObject("body").getJSONArray("und").getJSONObject(0).getString("safe_value");
+//                    mNoticiasData(html);
+//                    mAdapter.notifyDataSetChanged();
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//                Log.e("Error","Server Error");
+//            }
+//
+//
+//        });
+//
+//        requestQueue.add(jsonObjectRequest);
+//
+//    }
 
     private void initializeData() {
         // Get the resources from the XML file.

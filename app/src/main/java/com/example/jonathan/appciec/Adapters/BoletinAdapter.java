@@ -1,9 +1,7 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,25 +12,22 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.util.Log;
-
-
 import com.bumptech.glide.Glide;
-
+import com.example.jonathan.appciec.Models.Boletin;
+import com.example.jonathan.appciec.R;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
  * {@link BaseAdapter} para poblar coches en un grid view
  */
 
-class BoletinAdapter extends RecyclerView.Adapter<BoletinAdapter.ViewHolder> {
-    private ArrayList<Boletin> lista;
+public class BoletinAdapter extends RecyclerView.Adapter<BoletinAdapter.ViewHolder> {
+    private final ArrayList<Boletin> lista;
     private final Context mContext;
 
 
-    BoletinAdapter(Context context, ArrayList<Boletin> listado) {
+    public BoletinAdapter(Context context, ArrayList<Boletin> listado) {
         this.lista = listado;
         this.mContext = context;
     }

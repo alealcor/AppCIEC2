@@ -1,4 +1,4 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,18 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import com.example.jonathan.appciec.Activities.DivulgacionesActivity;
+import com.example.jonathan.appciec.Activities.InvestigacionesActivity;
+import com.example.jonathan.appciec.R;
 
 public class ArticulosFragment extends Fragment implements View.OnClickListener {
-
-    Button button_investigaciones;
-    Button button_divulgaciones;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_articulos, container,false);
-        button_investigaciones = (Button) view.findViewById(R.id.button_Investigaciones);
-        button_divulgaciones =  (Button) view.findViewById((R.id.button_Divulgaciones));
+        Button button_investigaciones = view.findViewById(R.id.button_Investigaciones);
+        Button button_divulgaciones = view.findViewById((R.id.button_Divulgaciones));
         button_investigaciones.setOnClickListener(this);
         button_divulgaciones.setOnClickListener(this);
         return view;
@@ -30,20 +30,20 @@ public class ArticulosFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_Investigaciones:
-                verArticulosInvestigacion(v);
+                verArticulosInvestigacion();
                 break;
             case R.id.button_Divulgaciones:
-                verArticulosDivulgacion(v);
+                verArticulosDivulgacion();
                 break;
         }
     }
 
-    public void verArticulosInvestigacion(View view){
+    private void verArticulosInvestigacion(){
         Intent intent = new Intent(getActivity(), InvestigacionesActivity.class);
         startActivity(intent);
     }
 
-    public void verArticulosDivulgacion(View view){
+    private void verArticulosDivulgacion(){
         Intent intent = new Intent(getActivity(), DivulgacionesActivity.class);
         startActivity(intent);
 

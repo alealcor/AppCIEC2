@@ -1,6 +1,6 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Models;
 
-class Evento {
+public class Evento {
     private final int imageResource;
 
     public Evento(int imageResource) {

@@ -1,4 +1,4 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Models;
 
 public class Usuario {
     private String nombre;

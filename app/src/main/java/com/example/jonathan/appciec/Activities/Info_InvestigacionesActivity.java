@@ -1,8 +1,9 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import com.example.jonathan.appciec.R;
 
 public class Info_InvestigacionesActivity extends AppCompatActivity {
 

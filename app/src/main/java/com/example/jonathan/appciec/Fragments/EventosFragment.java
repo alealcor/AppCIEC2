@@ -1,31 +1,25 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Fragments;
 
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.os.Bundle;
 import android.view.View;
-import android.app.Activity;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebChromeClient;
-import android.widget.ProgressBar;
+import com.example.jonathan.appciec.Models.Evento;
+import com.example.jonathan.appciec.Adapters.EventoAdapter;
+import com.example.jonathan.appciec.R;
 
 public class EventosFragment extends Fragment {
-    private WebView browser;
-    private ProgressBar progressBar;
     private ArrayList<Evento> mNoticiasData;
     private EventoAdapter mAdapter;
 
@@ -41,7 +35,7 @@ public class EventosFragment extends Fragment {
         mAdapter = new EventoAdapter(this.mNoticiasData, getActivity());
         mRecyclerView.setAdapter(mAdapter);
         initializeData();
-        browser=(WebView)view.findViewById(R.id.visorweb);
+        WebView browser = view.findViewById(R.id.visorweb);
         browser.getSettings().setBuiltInZoomControls(true);
 
         browser.setWebViewClient(new WebViewClient() {

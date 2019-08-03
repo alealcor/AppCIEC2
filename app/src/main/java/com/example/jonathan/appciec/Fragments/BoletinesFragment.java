@@ -1,7 +1,6 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Fragments;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,18 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
+import com.example.jonathan.appciec.Activities.BoletinesPoliticaActivity;
+import com.example.jonathan.appciec.R;
 
 public class BoletinesFragment extends Fragment implements View.OnClickListener {
-    Button button_politica;
-    Button button_otros;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_boletines, container,false);
-        button_politica = (Button) view.findViewById(R.id.button_politica);
-        button_otros =  (Button) view.findViewById((R.id.button_otros));
+        Button button_politica = view.findViewById(R.id.button_politica);
+        Button button_otros = view.findViewById((R.id.button_otros));
         button_politica.setOnClickListener(this);
         button_otros.setOnClickListener(this);
         return view;
@@ -31,20 +29,20 @@ public class BoletinesFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_politica:
-                verBoletines(v);
+                verBoletines();
                 break;
             case R.id.button_otros:
-                verBoletines(v);
+                verBoletines();
                 break;
         }
     }
 
-    public void verBoletines(View view){
+    private void verBoletines(){
         Intent intent = new Intent(getActivity(), BoletinesPoliticaActivity.class);
         startActivity(intent);
     }
 
-    public void verArticulosDivulgacion(View view){
+    public void verArticulosDivulgacion(){
         Intent intent = new Intent(getActivity(), BoletinesPoliticaActivity.class);
         startActivity(intent);
 
