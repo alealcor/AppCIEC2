@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress XmlUnusedNamespaceDeclaration -->
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InvestigacionesActivity"
+    android:fitsSystemWindows="true">
+    <!--tools:openDrawer="start"-->
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="31dp">
+
+
+        <!--<include-->
+            <!--layout="@layout/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+        <!--<android.support.v7.widget.Toolbar-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="?attr/colorPrimary"-->
+                <!--android:theme="?attr/actionBarTheme"-->
+                <!--android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar"/>-->
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="381dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp">
+
+        </SearchView>
+
+        <TextView
+                android:text="@string/placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/searchMessage" android:visibility="gone"
+                tools:visibility="gone" android:gravity="center"/>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_Investigaciones"
+                android:layout_width="match_parent"
+                android:layout_height="477dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+        />
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>
+

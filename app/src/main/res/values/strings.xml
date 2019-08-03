@@ -1,0 +1,96 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">AppCIEC</string>
+    <string name="inicio_sesion">Iniciar Sesion</string>
+    <string name="registro">Registro</string>
+    <string name="boletines">Boletines</string>
+    <string name="mapas">Mapas</string>
+    <string name="investigaciones">Investigaciones</string>
+    <string name="eventos">Eventos</string>
+    <string name="noticias">Noticias</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="titulo_label">Titulo:</string>
+    <string name="autor_label">Autores:</string>
+    <string name="fecha_label">Fecha:</string>
+    <string name="pais_label">Pais:</string>a
+    <string name="journal_label">Journal:</string>
+    <string name="pron_sticos">Pronósticos</string>
+    <string name="configuraciones">Configuraciones</string>
+    <string name="search_hint">"Busca artículos de investigacion"</string>
+    <string name="nombre_transicion_imagen">imagen_compartida</string>
+    <string-array name="titulos_noticias">
+        <item>Objetivos de Desarrollo Sostenible se discuten en presentación de Boletín de Política Económica</item>
+        <item>Boletín de Política Económica se presenta en Quito</item>
+    </string-array>
+
+    <string-array name="contenido_noticias">
+        <item>Con el objetivo de generar investigación y análisis que contribuyan a la reflexión y al debate sobre la
+            situación del país, el Centro de Investigaciones Económicas (CIEC) de la Facultad de Ciencias Sociales y
+            Humanísticas (FCSH), de la Espol, presentó este jueves 11 de octubre, la tercera edición del Boletín de
+            Política Económica (BPE) con énfasis en política social/educativa y política ambiental.\n\n
+            José Gabriel Castillo, director del CIEC, dio la bienvenida a los asistentes y los invitó a seguir
+            participando en el debate de temas económicos que son fundamentales para la ciudadanía. Además, hizo
+            referencia a los tres artículos que conforman esta edición: Desarrollo Sostenible al interior de la ciudad
+            de Guayaquil: Territorializando la Agenda 2030 (artículo principal), Gratuidad y Acceso al Sistema de
+            Educación Superior: Análisis y retos pendientes, y, Métodos de Valoración Económica: Una aplicación al
+            manglar del Golfo de Guayaquil.\n\n
+            Durante la presentación, Andrea Molina, docente de la FCSH, expuso el artículo central de la edición. En él
+            se presenta un análisis territorial de la ciudad de Guayaquil, a partir de los indicadores de desarrollo
+            social, según la Agenda de Desarrollo Sostenible 2030. Molina espera que la realización de este artículo
+            contribuya a la visibilización del desarrollo heterogéneo de la ciudad, y que motive el planteamiento de
+            investigaciones en esta línea de trabajo.\n\n
+            María Elena Enríquez, del Programa de las Naciones Unidas para el Desarrollo (PNUD), y Augusto Barrera,
+            exalcalde de Quito, y actual coordinador del Centro de Investigación de Políticas Públicas y Territorio
+            (CITE) de la Flacso Ecuador, también participaron del lanzamiento. En sus intervenciones se refirieron a la
+            importancia de relacionar los Objetivos de Desarrollo Sostenible (ODS) con la academia, y felicitaron a la
+            Espol por incentivar el conocimiento de esta agenda en sus estudiantes. Además, Enríquez hizo un llamado a
+            las instituciones públicas y privadas de hacer énfasis en la generación de información y difusión de los 17
+            ODS de la Agenda 2030 del PNUD, para empoderar a la ciudadanía.\n\n
+            Barrera añadió que estos estudios de territorialización sirven para demostrar la segregación espacial de la
+            ciudad de Guayaquil. Esta es una consecuencia de la dinámica de desarrollo, a partir de aspectos económicos,
+            políticos, sociales y culturales. Enfatizó en que se debe hacer un reajuste a las políticas públicas y
+            planificación urbana para revertir la segregación socioespacial.\n\n
+            La presentación del boletín finalizó con un panel de preguntas en el que intervinieron Enríquez, Barrera, y
+            Andrea Molina, como moderadora. Leonardo Sánchez, decano de la FCSH, y María Elena Romero, subdecana,
+            también estuvieron presentes en el evento.
+            La presente edición del BPE, y sus ediciones previas, pueden descargarse de la página web del CIEC
+            (www.ciec.espol.edu.ec); o, a través del siguiente enlace: https://bit.ly/2CAc7zG.
+        </item>
+        <item tools:ignore="Typos">El Centro de Investigaciones Económicas, CIEC – Espol, presentó un relanzamiento de
+            la primera edición del Boletín de Política Económica con énfasis en Política Industrial. El evento se llevó
+            a cabo en la Sala de Juntas de la Cámara de Industrias y Producción, CIP, el 6 de septiembre en Quito.\n\n
+            El Boletín de Política Económica presenta un ranking de las principales compañías del sector manufacturero,
+            además de un análisis de la dinámica empresarial nacional. Leonardo Sánchez, decano de la FCSH, señaló que
+            el objetivo principal de desarrollar estos documentos es aportar conocimiento del panorama económico de
+            Ecuador, a profesionales del área.\n\n
+            Por su parte, el director del CIEC, José Gabriel Castillo, indicó que el lanzamiento de cada boletín es una
+            iniciativa que pretende vincular a la academia, el sector público y privado en un debate analítico acerca de
+            la situación económica actual del país. En este sentido, Carla Muirragui, vicepresidenta de la CIP, enfatizó
+            la importancia de generar estos espacios que promueven un vínculo entre la academia y el sector privado.\n\n
+            La presentación del boletín concluyó con un panel de discusión en el que intervino, como moderador, José
+            Luis Castillo, profesor de la FCSH; Álvaro Acosta, Intendente Nacional de Planificación, Tecnología y
+            Desarrollo de la Superintendencia de Compañías, Valores y Seguros, y; Pablo Zambrano, Presidente de la CIP.
+            Aquí abordaron temas de la situación actual del país y plantearon su punto de vista, tanto académico como
+            público y privado, respecto al trabajo que desarrollan las industrias.\n\n
+            Además del Boletín de Política Económica con énfasis en Política Industrial, el CIEC también presentó un
+            Boletín con enfoque en Política Fiscal y Política Ambiental/Agrícola. Las versiones digitales de cada
+            edición están disponibles en: http://www.ciec.espol.edu.ec/boletin-politica-economica.\n\n
+        </item>
+    </string-array>
+
+    <array name="imagenes_noticias">
+        <item>@drawable/noticia1</item>
+        <item>@drawable/noticia2</item>
+    </array>
+
+    <array name="imagenes_eventos">
+        <item>@drawable/cafe_1</item>
+        <item>@drawable/cafe_2</item>
+        <item>@drawable/cafe_3</item>
+    </array>
+    <string name="Artículos">Articulos</string>
+    <string name="Divulgaciones">Divulgaciones</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="login">Iniciar Sesión</string>
+
+</resources>

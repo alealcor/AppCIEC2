@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "257176614327",
+    "firebase_url": "https://appciec-93bbb.firebaseio.com",
+    "project_id": "appciec-93bbb",
+    "storage_bucket": "appciec-93bbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257176614327:android:d576aaa221bffc9a",
+        "android_client_info": {
+          "package_name": "com.example.jonathan.appciec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257176614327-ujrpgj80353nv8pn4tg7efstcac2gjo9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jonathan.appciec",
+            "certificate_hash": "895ec02e429fa312f9610e1addcb8183e479b713"
+          }
+        },
+        {
+          "client_id": "257176614327-arut2cc9n6rf6io17rdu10iuksug5940.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADyzq4JexSi-540dwsiUE4uTpWznEZ49s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257176614327-arut2cc9n6rf6io17rdu10iuksug5940.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
