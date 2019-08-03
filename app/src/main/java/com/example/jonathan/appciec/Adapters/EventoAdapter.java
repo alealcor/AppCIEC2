@@ -1,5 +1,4 @@
-package com.example.jonathan.appciec;
-
+package com.example.jonathan.appciec.Adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.jonathan.appciec.Models.Evento;
+import com.example.jonathan.appciec.R;
 
 import java.util.ArrayList;
 
-class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder>  {
+public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder>  {
 
         // Member variables.
         private final ArrayList<Evento> mNoticiaData;

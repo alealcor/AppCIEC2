@@ -1,47 +1,34 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Activities;
 
-        import android.content.Intent;
-        import android.net.Uri;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.support.v7.widget.DividerItemDecoration;
-        import android.support.v7.widget.GridLayoutManager;
-        import android.support.v7.widget.LinearLayoutManager;
-        import android.support.v7.widget.RecyclerView;
-        import android.util.Log;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.GridView;
-        import android.widget.ImageView;
-        import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
-        import com.android.volley.DefaultRetryPolicy;
-        import com.android.volley.Request;
-        import com.android.volley.RequestQueue;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.android.volley.toolbox.JsonObjectRequest;
-        import com.android.volley.toolbox.Volley;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
-        import org.jsoup.Jsoup;
-        import org.jsoup.nodes.Document;
-        import org.jsoup.nodes.Element;
-        import org.jsoup.select.Elements;
+import com.example.jonathan.appciec.Adapters.BoletinAdapter;
+import com.example.jonathan.appciec.Models.Boletin;
+import com.example.jonathan.appciec.R;
+import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
         import java.util.ArrayList;
-        import java.util.Iterator;
-        import java.util.regex.Matcher;
-        import java.util.regex.Pattern;
+
 public class BoletinesPoliticaActivity extends AppCompatActivity {
 
-    static String URL_BASE = "http://www.ciec.espol.edu.ec";
-
-    public ArrayList<Boletin> lista_boletines = new ArrayList<>();
+    private ArrayList<Boletin> lista_boletines = new ArrayList<>();
     private BoletinAdapter mAdapter;
 
     @Override
@@ -127,7 +114,7 @@ public class BoletinesPoliticaActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
-    public void getBoletines(String html){
+    private void getBoletines(String html){
         Document doc = Jsoup.parse(html);
         /*for (Element element : doc.select("*")) {
             if (!element.hasText() && element.isBlock()) {
@@ -140,6 +127,7 @@ public class BoletinesPoliticaActivity extends AppCompatActivity {
             Elements pdf= elemento.getElementsByTag("a");
             Elements img= elemento.getElementsByTag("img");
             Elements info = elemento.getElementsByTag("pre");
+            String URL_BASE = "http://www.ciec.espol.edu.ec";
             String url_pdf = URL_BASE + pdf.first().attr("href");
             String url_img = URL_BASE + img.first().attr("src");
             String informacion = info.first().ownText();

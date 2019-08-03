@@ -1,19 +1,16 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Activities;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
-import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.MenuItem;
-import android.widget.Toast;
+import com.example.jonathan.appciec.Models.Evento;
+import com.example.jonathan.appciec.R;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class MetodosdePrueba {
 
-    MetodosdePrueba(){
+    public MetodosdePrueba(){
 
     }
     //Metodo del Login
@@ -22,8 +19,7 @@ public class MetodosdePrueba {
             //Toast.makeText(InicioSesionActivity,"Se debe ingresar correo",Toast.LENGTH_LONG).show();
             return false;
         } else if (correo.length() > 0) {
-            boolean emailPattern = Pattern.compile("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+").matcher(correo).matches();
-            return emailPattern;
+            return Pattern.compile("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+").matcher(correo).matches();
         }else if (contra.length() == 0 ) {
             return false;
         }else if (contra.length() < 6 ) {
@@ -41,18 +37,14 @@ public class MetodosdePrueba {
         }
 
         if (contra.equals(compro)) {
-            if (contra.length() < 6) {
-                //Toast.makeText(RegistroActivity.this,"Se debe ingresar contraseña con al menos 6 caracteres",Toast.LENGTH_LONG).show();
-                return false;
-            };
-            return true;
+            //Toast.makeText(RegistroActivity.this,"Se debe ingresar contraseña con al menos 6 caracteres",Toast.LENGTH_LONG).show();
+            return contra.length() >= 6;
         }
-        ;
         return false;
     }
 
     //EventoAdapter
-    public ArrayList<Evento> mNoticiaData = new ArrayList<Evento>();
+    public final ArrayList<Evento> mNoticiaData = new ArrayList<>();
     public int getItemCount() {
         return this.mNoticiaData.size();
     }

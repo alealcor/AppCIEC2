@@ -1,31 +1,27 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.text.TextUtils;
 
+import com.example.jonathan.appciec.Models.Usuario;
+import com.example.jonathan.appciec.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText txtCorreo,txtContrasenia,txtComprobacion;
-    private Button btnRegistrar, btnLogin;
     private DatabaseReference reff;
     private Usuario usuario;
     private FirebaseAuth myAuth;
@@ -35,18 +31,18 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         myAuth = FirebaseAuth.getInstance();
-        txtCorreo = (EditText)findViewById(R.id.txtCorreo);
-        txtContrasenia = (EditText)findViewById(R.id.txtContrasenia);
-        txtComprobacion = (EditText)findViewById(R.id.txtComprobar);
+        txtCorreo = findViewById(R.id.txtCorreo);
+        txtContrasenia = findViewById(R.id.txtContrasenia);
+        txtComprobacion = findViewById(R.id.txtComprobar);
         usuario = new Usuario();
         reff = FirebaseDatabase.getInstance().getReference().child("Usuario");
-        btnRegistrar = (Button)findViewById(R.id.btnRegistrar);
-        btnLogin = (Button)findViewById(R.id.btnLogin);
+        Button btnRegistrar = findViewById(R.id.btnRegistrar);
+        Button btnLogin = findViewById(R.id.btnLogin);
         progressDialog = new ProgressDialog(this);
         btnRegistrar.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
     }
-    public void registrarUsuario(){
+    private void registrarUsuario(){
         String correo = txtCorreo.getText().toString().trim();
         String contrasenia = txtContrasenia.getText().toString().trim();
         String comprobacion = txtComprobacion.getText().toString().trim();
@@ -82,7 +78,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(RegistroActivity.this,"Contraseña y comprobación no coinciden",Toast.LENGTH_LONG).show();
         }
     }
-    public boolean validarUsuario(String correo, String contra, String compro){
+    private boolean validarUsuario(String correo, String contra, String compro){
         if(correo.length()==0){
             Toast.makeText(RegistroActivity.this,"Se debe ingresar correo",Toast.LENGTH_LONG).show();
         }
@@ -91,9 +87,9 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
             if (contra.length()<6){
                 Toast.makeText(RegistroActivity.this,"Se debe ingresar contraseña con al menos 6 caracteres",Toast.LENGTH_LONG).show();
                 return false;
-            };
+            }
             return true;
-        };
+        }
         return false;
     }
     @Override

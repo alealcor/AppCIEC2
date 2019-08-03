@@ -1,7 +1,7 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,18 +15,23 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
+import com.example.jonathan.appciec.Adapters.PaperAdapter;
+import com.example.jonathan.appciec.Models.Paper;
+import com.example.jonathan.appciec.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class InvestigacionesActivity extends AppCompatActivity {
+public class DivulgacionesActivity extends AppCompatActivity {
 
     private ArrayList<Paper> mPaperData;
     private ArrayList<Paper> mPaperComplete;
@@ -35,7 +40,8 @@ public class InvestigacionesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_investigaciones);
+        setContentView(R.layout.activity_divulgaciones);
+
         SearchView searchView =  findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -50,16 +56,6 @@ public class InvestigacionesActivity extends AppCompatActivity {
             }
         });
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
-//        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-
         // Initialize the RecyclerView.
         RecyclerView mRecyclerView = findViewById(R.id.recyclerView_Investigaciones);
 
@@ -71,6 +67,7 @@ public class InvestigacionesActivity extends AppCompatActivity {
         mPaperData = new ArrayList<>();
         mPaperComplete = new ArrayList<>();
         initializeData();
+
         // Initialize the adapter and set it to the RecyclerView.
         mAdapter = new PaperAdapter(this, mPaperData, mPaperComplete);
 
@@ -80,6 +77,8 @@ public class InvestigacionesActivity extends AppCompatActivity {
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(itemDecoration);
 
+        // Get the data.
+
     }
 
     private void initializeData() {
@@ -87,7 +86,7 @@ public class InvestigacionesActivity extends AppCompatActivity {
         mPaperData.clear();
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://www.ciec.espol.edu.ec/rest/node/2";
+        String url = "http://www.ciec.espol.edu.ec/rest/node/20";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -115,7 +114,30 @@ public class InvestigacionesActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
 
     }
-    public void getPapersPublicados(String html){
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_app,menu);
+        SearchView searchView =  findViewById(R.id.searchView);
+//        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
+    }
+
+    @SuppressWarnings("NonAsciiCharacters")
+    private void getPapersPublicados(String html){
         Document doc = Jsoup.parse(html);
         for (Element element : doc.select("*")) {
             if (!element.hasText() && element.isBlock()) {
@@ -123,8 +145,11 @@ public class InvestigacionesActivity extends AppCompatActivity {
             }
         }
 
+        //noinspection NonAsciiCharacters
         Elements años = doc.getElementsByTag("h1");
 
+
+        //noinspection NonAsciiCharacters
         for (Element año:años ){
 
             Elements ps = año.nextElementSiblings().select("p");
@@ -171,9 +196,14 @@ public class InvestigacionesActivity extends AppCompatActivity {
                 Paper paper = new Paper(titulo,autores, fecha, journal, pais);
                 mPaperData.add(paper);
                 mPaperComplete.add(paper);
+
             }
+
+
         }
 
-
     }
+
+
+
 }

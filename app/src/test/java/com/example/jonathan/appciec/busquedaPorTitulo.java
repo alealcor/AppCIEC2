@@ -1,5 +1,6 @@
 package com.example.jonathan.appciec;
 
+import com.example.jonathan.appciec.Adapters.PaperAdapter;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -13,7 +14,7 @@ public class busquedaPorTitulo {
     @Test
     public void busquedaNula() {
         String query = null;
-        assertFalse(PaperAdapter.validateTitleSearchQuery(query));
+        assertFalse(PaperAdapter.validateTitleSearchQuery(null));
 
     }
 

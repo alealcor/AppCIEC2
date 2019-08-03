@@ -1,6 +1,6 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Models;
 
-class Paper {
+public class Paper {
     private final String titulo;
     private final String autores;
     private final String fecha;

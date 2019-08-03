@@ -1,4 +1,4 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,19 +11,22 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import com.example.jonathan.appciec.Activities.Info_InvestigacionesActivity;
+import com.example.jonathan.appciec.Models.Paper;
+import com.example.jonathan.appciec.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
-
-class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> implements Filterable {
+public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> implements Filterable {
     // Member variables.
-    private ArrayList<Paper> mPapersData;
-    private ArrayList<Paper> mPapersComplete;
+    private final ArrayList<Paper> mPapersData;
+    private final ArrayList<Paper> mPapersComplete;
     private final Context mContext;
 
 
-    PaperAdapter(Context context, ArrayList<Paper> mPapersData, ArrayList<Paper> copy) {
+    public PaperAdapter(Context context, ArrayList<Paper> mPapersData, ArrayList<Paper> copy) {
         this.mPapersData = mPapersData;
         this.mPapersComplete = copy;
         this.mContext = context;
@@ -78,7 +81,7 @@ class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> impleme
             valido = false;
         }
 
-        if (query == ""){
+        if (Objects.equals(query, "")){
             valido = true;
         }
 
@@ -91,7 +94,7 @@ class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> impleme
         return papersFilter;
     }
 
-    private Filter papersFilter = new Filter() {
+    private final Filter papersFilter = new Filter() {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {

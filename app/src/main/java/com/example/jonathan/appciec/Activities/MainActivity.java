@@ -1,4 +1,4 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import com.example.jonathan.appciec.Fragments.*;
+import com.example.jonathan.appciec.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;

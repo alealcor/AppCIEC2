@@ -1,6 +1,6 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Models;
 
-class Boletin {
+public class Boletin {
     private final String informacion;
     private final String url_pdf;
     private final String url_img;

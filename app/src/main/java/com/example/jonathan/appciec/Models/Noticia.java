@@ -1,6 +1,6 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Models;
 
-class Noticia {
+public class Noticia {
     private final String titulo;
     private final String contenido;
     private final int imageResource;

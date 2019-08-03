@@ -1,4 +1,4 @@
-package com.example.jonathan.appciec;
+package com.example.jonathan.appciec.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,19 +11,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.jonathan.appciec.Models.Noticia;
+import com.example.jonathan.appciec.Activities.NoticiaActivity;
+import com.example.jonathan.appciec.R;
 
 import java.util.ArrayList;
 
 /***
  * The adapter class for the RecyclerView, contains the sports data.
  */
-class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHolder>  {
+public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHolder>  {
 
     // Member variables.
     private final ArrayList<Noticia> mNoticiaData;
     private final Context mContext;
 
-    NoticiaAdapter(Context context, ArrayList<Noticia> NoticiaData) {
+    public NoticiaAdapter(Context context, ArrayList<Noticia> NoticiaData) {
         this.mNoticiaData = NoticiaData;
         this.mContext = context;
     }
