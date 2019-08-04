@@ -3,9 +3,15 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.example.jonathan.appciec">
 
+
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.LOCATION_HARDWARE.location.gps"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -73,15 +79,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity
-                android:name=".Activities.MapasActivity"
-                android:label="@string/mapas">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
         <activity
                 android:name=".Activities.ConfiguracionesActivity"
                 android:label="@string/configuraciones">
@@ -91,6 +89,8 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
     </application>
+
 
 </manifest>

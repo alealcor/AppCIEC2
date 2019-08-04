@@ -109,4 +109,18 @@
         android:gravity="bottom|center"
         android:paddingTop="24dp"
         android:paddingBottom="32dp"/>
+    <Button
+            android:id="@+id/boton_maps"
+            android:layout_width="160dp"
+            android:layout_height="136dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:onClick="VerMapas"
+            android:text="mapas"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/boton_eventos"
+            android:drawableTop="@drawable/ic_map"
+            android:gravity="bottom|center"
+            android:paddingTop="24dp"
+            android:paddingBottom="32dp"/>
 </android.support.constraint.ConstraintLayout>

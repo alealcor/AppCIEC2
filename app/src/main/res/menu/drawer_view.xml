@@ -22,6 +22,9 @@
         <item android:title="@string/Artículos"
             android:id="@+id/nav_articulos"
             android:icon="@drawable/ic_articulos" />
+        <item android:title="@string/mapas"
+              android:id="@+id/nav_mapas"
+              android:icon="@drawable/ic_map" />
 
 
 
