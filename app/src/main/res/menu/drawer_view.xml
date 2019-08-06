@@ -19,14 +19,13 @@
             android:id="@+id/nav_eventos"
             android:icon="@drawable/ic_eventos"
             android:title="@string/eventos" />
+
         <item android:title="@string/Artículos"
             android:id="@+id/nav_articulos"
             android:icon="@drawable/ic_articulos" />
 
-
-
+        <item android:title="@string/cerrar_sesion"
+            android:id="@+id/cerrar_sesion" />
     </group>
-
-
 
 </menu>

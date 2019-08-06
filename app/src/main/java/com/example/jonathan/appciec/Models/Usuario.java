@@ -5,7 +5,7 @@ public class Usuario {
     private String apellido;
     private String correo;
     private String contrasenia;
-    private String comprobarContra;
+    private String token;
 
     public Usuario() {
     }
@@ -42,11 +42,11 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public String getComprobarContra() {
-        return comprobarContra;
+    public String getToken() {
+        return token;
     }
 
-    public void setComprobarContra(String comprobarContra) {
-        this.comprobarContra = comprobarContra;
+    public void setToken(String token) {
+        this.token = token;
     }
 }

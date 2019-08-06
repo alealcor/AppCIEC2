@@ -43,14 +43,10 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         btnLogin.setOnClickListener(this);
     }
     private void registrarUsuario(){
-        String correo = txtCorreo.getText().toString().trim();
-        String contrasenia = txtContrasenia.getText().toString().trim();
-        String comprobacion = txtComprobacion.getText().toString().trim();
+        final String correo = txtCorreo.getText().toString().trim();
+        final String contrasenia = txtContrasenia.getText().toString().trim();
+        final String comprobacion = txtComprobacion.getText().toString().trim();
         if (validarUsuario(correo,contrasenia,comprobacion)){
-            usuario.setCorreo(correo);
-            usuario.setContrasenia(contrasenia);
-            usuario.setComprobarContra(comprobacion);
-            reff.push().setValue(usuario);
 
             progressDialog.setMessage("Realizando registro");
             progressDialog.show();
@@ -59,6 +55,10 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        usuario.setCorreo(correo);
+                        usuario.setContrasenia(contrasenia);
+                        usuario.setToken(myAuth.getCurrentUser().getUid());
+                        reff.push().setValue(usuario);
                         Toast.makeText(RegistroActivity.this, "Registro creado exitosamente",
                                 Toast.LENGTH_SHORT).show();
                     } else {

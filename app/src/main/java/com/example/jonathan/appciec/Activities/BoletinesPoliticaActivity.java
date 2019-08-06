@@ -53,23 +53,6 @@ public class BoletinesPoliticaActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(itemDecoration);
     }
 
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_app,menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-        Intent activity = new MenuInteraction(this).chooseActivity(id);
-        if (activity==null){
-            return onOptionsItemSelected(item);
-        }
-        else {
-            startActivity(activity);
-        }
-        return true;
-    }*/
     private void initializeData( ) {
         lista_boletines.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(this);

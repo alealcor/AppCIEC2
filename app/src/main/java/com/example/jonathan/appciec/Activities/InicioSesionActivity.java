@@ -1,10 +1,13 @@
 package com.example.jonathan.appciec.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +28,7 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
     private Button btnRegistro;
     private FirebaseAuth myAuth;
     private ProgressDialog progressDialog;
+    private String tkn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +43,8 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         btnRegistro.setOnClickListener(this);
     }
     private void loguearUsuario(){
-        String correo = txtCorreo.getText().toString().trim();
-        String contrasenia = txtContrasenia.getText().toString().trim();
+        final String correo = txtCorreo.getText().toString().trim();
+        final String contrasenia = txtContrasenia.getText().toString().trim();
         if (validarUsuario(correo) && validarContra(contrasenia)){
             progressDialog.setMessage("Realizando consulta");
             progressDialog.show();
@@ -49,8 +53,9 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(InicioSesionActivity.this, "Bienvenido",
-                                Toast.LENGTH_SHORT).show();
+                        tkn = myAuth.getCurrentUser().getUid();
+                        Log.e("token", tkn);
+                        guardarSesion();
                         Intent intent = new Intent(InicioSesionActivity.this, MainActivity.class);
                         startActivity(intent);
                     } else {
@@ -105,5 +110,28 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
             loguearUsuario();
         }
 
+    }
+
+    public void guardarSesion(){
+        SharedPreferences preferencias = getSharedPreferences("Credenciales.sesion",MODE_PRIVATE);
+        String crr = txtCorreo.getText().toString().trim();;
+        Boolean logg = true;
+        SharedPreferences.Editor editor = preferencias.edit();
+        editor.putString("correo",crr);
+        editor.putString("token",this.tkn);
+        editor.putBoolean("log",logg);
+        editor.commit();
+    }
+
+    public void cargarSesion(){
+        SharedPreferences preferencias = getSharedPreferences("Credenciales.sesion",Context.MODE_PRIVATE);
+
+        if (preferencias.getBoolean("log",false)){
+            String crr = preferencias.getString("correo","No esta registrado");
+            String token = preferencias.getString("token","No esta registrado");
+        }
+        else{
+            Log.e("sesion","no hay sesion iniciada");
+        }
     }
 }
