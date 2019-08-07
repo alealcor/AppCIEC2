@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_login:
                 Intent intent = new Intent(this, InicioSesionActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_mapas:
+                Intent intento = new Intent(this, MapasActivity.class);
+                startActivity(intento);
+                break;
             default:
                 break;
 
@@ -96,6 +101,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void verArticulos(View view){
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
+                new ArticulosFragment()).commit();
+
+    }
+
+    public void verMapas(View view){
+        getSupportFragmentManager().beginTransaction().replace(R.id.mapa,
                 new ArticulosFragment()).commit();
 
     }
