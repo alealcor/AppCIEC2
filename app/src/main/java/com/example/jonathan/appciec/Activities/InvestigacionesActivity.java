@@ -177,7 +177,15 @@ public class InvestigacionesActivity extends AppCompatActivity {
                 mPaperComplete.add(paper);
             }
         }
+    }
 
+    public void agregarFavorito(String paper){
+
+    }
+    public void eliminarFavorito(String paper){
+
+    }
+    public void esFavorito(String paper){
 
     }
 }

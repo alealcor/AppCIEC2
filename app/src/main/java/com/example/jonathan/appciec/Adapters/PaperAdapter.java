@@ -2,6 +2,7 @@ package com.example.jonathan.appciec.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.jonathan.appciec.Activities.Info_InvestigacionesActivity;
+import com.example.jonathan.appciec.Activities.MainActivity;
 import com.example.jonathan.appciec.Models.Paper;
 import com.example.jonathan.appciec.R;
 
@@ -31,6 +34,7 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
         this.mPapersComplete = copy;
         this.mContext = context;
     }
+
 
 
     @NonNull
@@ -134,8 +138,6 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
             notifyDataSetChanged();
         }
     };
-
-
     /**
      * ViewHolder class that represents each row of data in the RecyclerView.
      */
@@ -144,6 +146,7 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
         // Member Variables for the TextViews
         private final TextView mTitleText;
         private final TextView mAutorText;
+        private final ImageView fav;
 
         /**
          * Constructor for the ViewHolder, used in onCreateViewHolder().
@@ -152,10 +155,16 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
          */
         ViewHolder(View itemView) {
             super(itemView);
-
             // Initialize the views.
             mTitleText = itemView.findViewById(R.id.title);
             mAutorText = itemView.findViewById(R.id.subTitle);
+
+            if (estaIniciado()) {
+                fav = itemView.findViewById(R.id.fav_imagen);
+            }
+            else{
+                fav = null;
+            }
 
             // Set the OnClickListener to the entire view.
             itemView.setOnClickListener(this);
@@ -165,7 +174,22 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
             // Populate the textviews with data.
             mTitleText.setText(paper.getTitulo());
             mAutorText.setText(paper.getAutores());
-
+            if (estaIniciado()) {
+                //verificar si es favorito
+                if(true){
+                    fav.setImageResource(R.drawable.ic_star_border_black_24dp);
+                }else{
+                    fav.setImageResource(R.drawable.ic_star_black_24dp);
+                }
+                fav.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //verificar si es favorito
+                        //metodo agregar en firebase la modificacion
+                        fav.setImageResource(R.drawable.ic_star_black_24dp);
+                    }
+                });
+            }
         }
 
         @Override
@@ -180,4 +204,9 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
             mContext.startActivity(detailIntent);
         }
     }
+    public boolean estaIniciado(){
+        SharedPreferences preferencias = mContext.getSharedPreferences("Credenciales.sesion",Context.MODE_PRIVATE);
+        return preferencias.getBoolean("log",false);
+    }
+
 }

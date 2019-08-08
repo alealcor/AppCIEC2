@@ -9,7 +9,7 @@
             android:title="@string/login"/>
         <item
             android:id="@+id/nav_boletines"
-            android:icon="@drawable/ic_boletines"
+            android:icon="@drawable/ic_boletin"
             android:title="@string/boletines" />
         <item
             android:id="@+id/nav_noticias"
@@ -24,7 +24,17 @@
             android:id="@+id/nav_articulos"
             android:icon="@drawable/ic_articulos" />
 
+        <item
+            android:id="@+id/nav_mapas"
+            android:icon="@drawable/ic_map"
+            android:title="@string/mapas" />
+
+        <item android:title="@string/pron_sticos"
+            android:id="@+id/nav_pronosticos"
+            android:icon="@drawable/ic_pronosticos" />
+
         <item android:title="@string/cerrar_sesion"
+            android:icon="@drawable/ic_logout"
             android:id="@+id/cerrar_sesion" />
     </group>
 

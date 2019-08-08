@@ -31,30 +31,30 @@
                 <!--android:theme="?attr/actionBarTheme"-->
                 <!--android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar"/>-->
 
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="381dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp">
-
-        </SearchView>
-
         <TextView
                 android:text="@string/placeholder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/searchMessage" android:visibility="gone"
                 tools:visibility="gone" android:gravity="center"/>
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp">
+
+        </SearchView>
+
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView_Investigaciones"
-                android:layout_width="match_parent"
-                android:layout_height="477dp"
-                android:layout_marginBottom="24dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-        />
+            android:id="@+id/recyclerView_Investigaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="24dp" />
 
 
     </LinearLayout>
