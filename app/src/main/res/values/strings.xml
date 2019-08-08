@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="google_maps_key">AIzaSyBQ2LwT5KNmCDCuP7jwGrnM9-fZsEGA1XQ</string>
     <string name="app_name">AppCIEC</string>
     <string name="inicio_sesion">Iniciar Sesion</string>
     <string name="registro">Registro</string>

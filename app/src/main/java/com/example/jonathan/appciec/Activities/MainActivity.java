@@ -2,6 +2,7 @@ package com.example.jonathan.appciec.Activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment=null;
         switch (item.getItemId()) {
             case R.id.nav_boletines:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
@@ -63,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_mapas:
-                Intent intento = new Intent(this, MapasActivity.class);
-                startActivity(intento);
+                fragment= new MapasActivity();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,fragment).commit();
                 break;
             default:
                 break;
@@ -106,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void verMapas(View view){
-        getSupportFragmentManager().beginTransaction().replace(R.id.mapa,
-                new ArticulosFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
+                new MapasActivity()).commit();
 
     }
 

@@ -115,7 +115,7 @@
             android:layout_height="136dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="32dp"
-            android:onClick="VerMapas"
+            android:onClick="verMapas"
             android:text="mapas"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/boton_eventos"
