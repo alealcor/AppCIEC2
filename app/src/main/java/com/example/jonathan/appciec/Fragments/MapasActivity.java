@@ -1,27 +1,30 @@
 package com.example.jonathan.appciec.Fragments;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 import com.example.jonathan.appciec.R;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.*;
-import com.google.android.gms.maps.model.*;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.data.geojson.GeoJsonFeature;
+import com.google.maps.android.data.geojson.GeoJsonLayer;
+import com.google.maps.android.data.geojson.GeoJsonPolygon;
+import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
+import org.json.JSONException;
+
+import java.io.IOException;
 
 public class MapasActivity extends Fragment implements GoogleMap.OnMyLocationButtonClickListener,
         GoogleMap.OnMyLocationClickListener {
@@ -71,6 +74,23 @@ public class MapasActivity extends Fragment implements GoogleMap.OnMyLocationBut
                 mMap.setMyLocationEnabled(true);
                 mMap.setOnMyLocationButtonClickListener((GoogleMap.OnMyLocationButtonClickListener) mMap.getMyLocation());
                 mMap.setOnMyLocationClickListener((GoogleMap.OnMyLocationClickListener) mMap.getMyLocation());
+                GeoJsonLayer layer = null;
+                try {
+                    layer = new GeoJsonLayer(mMap, R.raw.gye_barrios, getContext());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+               for(GeoJsonFeature feature : layer.getFeatures()){
+                   GeoJsonPolygonStyle polygonStyle = feature.getPolygonStyle();
+                   if(polygonStyle != null){
+                       polygonStyle.setStrokeColor(12257031);
+                       polygonStyle.setFillColor(12257031);
+                   }
+               }
+                layer.addLayerToMap();
             }
         });
 
