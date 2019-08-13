@@ -25,14 +25,14 @@
         >
         </SearchView>
         <TextView
-                android:text="@string/placeholder"
+                android:text="No se encontraron resultados"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/searchMessage" android:visibility="gone"
-                tools:visibility="gone" android:gravity="center"/>
+                android:layout_height="wrap_content" android:id="@+id/searchMessage2" android:visibility="gone"
+                android:gravity="center"/>
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView_Investigaciones"
                 android:layout_width="389dp"
-                android:layout_height="477dp"
+                android:layout_height="653dp"
                 android:layout_marginBottom="24dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"

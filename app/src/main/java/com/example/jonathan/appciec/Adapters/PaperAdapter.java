@@ -26,6 +26,7 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
     private final Context mContext;
 
 
+
     public PaperAdapter(Context context, ArrayList<Paper> mPapersData, ArrayList<Paper> copy) {
         this.mPapersData = mPapersData;
         this.mPapersComplete = copy;
@@ -109,7 +110,6 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 String cleanFilterPattern = filterPattern.replaceAll( "[^a-zA-Z0-9 ]+" , "" );
                 if(validateTitleSearchQuery(cleanFilterPattern)) {
-                    Log.d("TAG", filterPattern);
                     for (Paper item : mPapersComplete) {
                         if (item.getTitulo().toLowerCase().contains(filterPattern)) {
 

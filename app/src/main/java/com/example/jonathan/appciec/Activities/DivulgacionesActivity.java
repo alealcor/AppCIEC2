@@ -7,8 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.SearchView;
 
+import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,6 +39,7 @@ public class DivulgacionesActivity extends AppCompatActivity {
     private ArrayList<Paper> mPaperComplete;
     private PaperAdapter mAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +55,17 @@ public class DivulgacionesActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 mAdapter.getFilter().filter(newText);
+                Log.d("TAG", String.valueOf(mPaperData.size()));
+                TextView Tv = findViewById(R.id.searchMessage2);
+                if (mPaperData.isEmpty()) {
+                    Tv.setVisibility(View.VISIBLE);
+                }
+                else {
+                    Tv.setVisibility(View.GONE);
+                }
                 return false;
             }
+
         });
 
         // Initialize the RecyclerView.
@@ -130,6 +142,14 @@ public class DivulgacionesActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 mAdapter.getFilter().filter(newText);
+                TextView Tv = findViewById(R.id.searchMessage2);
+                if (mPaperData.isEmpty()) {
+                    Tv.setVisibility(View.VISIBLE);
+                }
+                else {
+                    Tv.setVisibility(View.GONE);
+                }
+
                 return false;
             }
         });

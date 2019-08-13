@@ -68,6 +68,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment= new MapasActivity();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,fragment).commit();
                 break;
+            case R.id.nav_pronosticos:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
+                        new PronosticosFragment()).commit();
+                break;
             default:
                 break;
 
@@ -110,6 +114,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void verMapas(View view){
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
                 new MapasActivity()).commit();
+
+    }
+
+    public void verPronosticos(View view){
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
+                new PronosticosFragment()).commit();
 
     }
 

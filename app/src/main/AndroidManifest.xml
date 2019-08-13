@@ -34,6 +34,11 @@
                 android:parentActivityName=".Activities.InicioSesionActivity">
         </activity>
         <activity
+                android:name=".Activities.PronosticosActivity"
+                android:label="Pronostico"
+                android:parentActivityName=".Activities.MainActivity">
+        </activity>
+        <activity
                 android:name=".Activities.NoticiaActivity"
                 android:label="@string/noticias"
                 android:parentActivityName=".Activities.NoticiaActivity">
