@@ -3,10 +3,12 @@ package com.example.jonathan.appciec.Fragments;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +18,16 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.maps.android.data.geojson.GeoJsonFeature;
-import com.google.maps.android.data.geojson.GeoJsonLayer;
-import com.google.maps.android.data.geojson.GeoJsonPolygon;
-import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
+import com.google.android.gms.maps.model.*;
+import com.google.maps.android.data.Geometry;
+import com.google.maps.android.data.Point;
+import com.google.maps.android.data.geojson.*;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MapasActivity extends Fragment implements GoogleMap.OnMyLocationButtonClickListener,
         GoogleMap.OnMyLocationClickListener {
@@ -82,15 +85,41 @@ public class MapasActivity extends Fragment implements GoogleMap.OnMyLocationBut
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                //layer.getDefaultPolygonStyle().setFillColor(getContext().getColor(R.color.colorPrimary));
+                //layer.getDefaultPolygonStyle().setStrokeColor(getContext().getColor(R.color.colorPrimary));
 
-               for(GeoJsonFeature feature : layer.getFeatures()){
-                   GeoJsonPolygonStyle polygonStyle = feature.getPolygonStyle();
-                   if(polygonStyle != null){
-                       polygonStyle.setStrokeColor(12257031);
-                       polygonStyle.setFillColor(12257031);
-                   }
-               }
                 layer.addLayerToMap();
+                for(GeoJsonFeature feature : layer.getFeatures()){
+                    //Log.d("Stilo", feature.getProperty("nom_barrio").toString());
+                    GeoJsonPolygonStyle polygonStyle = new GeoJsonPolygonStyle();
+                    if(polygonStyle != null){
+                        //Log.d("Menj", "entro");
+                        //polygonStyle.setStrokeColor(getContext().getColor(R.color.colorPrimary));
+                        //polygonStyle.setFillColor(getContext().getColor(R.color.colorPrimary));
+                        //feature.setPolygonStyle(polygonStyle);
+                        Geometry point = feature.getGeometry();
+                        String example = point.getGeometryObject().toString();
+                        JSONObject obj = null;
+                        String tmp = "vacios";
+                        try {
+                            obj = new JSONObject(example);
+                           tmp = obj.keys().toString();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Log.d("Lista", tmp );
+
+                        //String geometryType = punto.getCenter().toString();
+                        /*if(punto != null){
+                            LatLng puntero = punto.get(1);
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(puntero)
+                                    .title(feature.getProperty("nom_barrio"))
+                                    .snippet(""));
+                        }*/
+                    }
+                    Log.d("Menj", "No entro");
+                }
             }
         });
 
