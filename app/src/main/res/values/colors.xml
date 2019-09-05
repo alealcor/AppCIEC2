@@ -4,4 +4,12 @@
     <color name="colorPrimaryDark">#055989</color>
     <color name="colorAccent">#D81B60</color>
     <color name="background_footer">#90000000</color>
+    <color name="colorMap1">#470b0b</color>
+    <color name="colorMap2">#5d0f0f</color>
+    <color name="colorMap3">#731212</color>
+    <color name="colorMap4">#891616</color>
+    <color name="colorMap5">#9f1a1a</color>
+    <color name="colorMap6">#b51d1d</color>
+    <color name="colorMap7">#cb2121</color>
+    <color name="colorMap8">#fadfdf</color>
 </resources>
