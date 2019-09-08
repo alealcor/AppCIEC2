@@ -18,10 +18,10 @@
             tools:layout_editor_absoluteX="31dp">
 
         <TextView
-                android:text="@string/placeholder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/searchMessage" android:visibility="gone"
-                tools:visibility="gone" android:gravity="center"/>
+            android:text="No se encontraron Resultados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/searchMessage" android:visibility="gone"
+            android:gravity="center"/>
 
         <SearchView
             android:id="@+id/searchView"
@@ -41,7 +41,6 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="24dp" />
-
 
     </LinearLayout>
 

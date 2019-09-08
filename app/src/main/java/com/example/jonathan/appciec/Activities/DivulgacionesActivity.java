@@ -1,7 +1,6 @@
 package com.example.jonathan.appciec.Activities;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -9,15 +8,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.SearchView;
-
+import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.example.jonathan.appciec.Adapters.PaperAdapter;
 import com.example.jonathan.appciec.Models.FirebaseConnector;
 import com.example.jonathan.appciec.Models.Paper;
@@ -26,16 +25,13 @@ import com.example.jonathan.appciec.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +49,7 @@ public class DivulgacionesActivity extends AppCompatActivity {
     private FirebaseConnector fconnector;
     private Map favoritos;
     private SessionHandler shandler;
+
 
 
     @Override
@@ -82,8 +79,17 @@ public class DivulgacionesActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 mAdapter.getFilter().filter(newText);
+                Log.d("TAG", String.valueOf(mPaperData.size()));
+                TextView Tv = findViewById(R.id.searchMessage2);
+                if (mPaperData.isEmpty()) {
+                    Tv.setVisibility(View.VISIBLE);
+                }
+                else {
+                    Tv.setVisibility(View.GONE);
+                }
                 return false;
             }
+
         });
 
         // Initialize the RecyclerView.
@@ -183,6 +189,14 @@ public class DivulgacionesActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 mAdapter.getFilter().filter(newText);
+                TextView Tv = findViewById(R.id.searchMessage2);
+                if (mPaperData.isEmpty()) {
+                    Tv.setVisibility(View.VISIBLE);
+                }
+                else {
+                    Tv.setVisibility(View.GONE);
+                }
+
                 return false;
             }
         });

@@ -1,9 +1,9 @@
 package com.example.jonathan.appciec.Activities;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment=null;
         switch (item.getItemId()) {
             case R.id.nav_boletines:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
@@ -87,6 +88,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_favoritos:
                 Intent intentF = new Intent(this, InvestigacionesFavoritasActivity.class);
                 startActivity(intentF);
+            case R.id.nav_mapas:
+                fragment = new MapasActivity();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,fragment).commit();
+                break;
+            case R.id.nav_pronosticos:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
+                        new PronosticosFragment()).commit();
                 break;
             default:
                 break;
@@ -127,12 +135,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
     public void recargarMain(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
+    public void verMapas(View view){
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
+                new MapasActivity()).commit();
+
+    }
+
+    public void verPronosticos(View view){
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
+                new PronosticosFragment()).commit();
+
+    }
+
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }

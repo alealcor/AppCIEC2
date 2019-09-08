@@ -92,7 +92,7 @@
         android:backgroundTintMode="screen"
         android:drawableTop="@drawable/ic_pronosticos_d"
         android:gravity="bottom|center"
-        android:onClick="verArticulos"
+        android:onClick="verPronosticos"
         android:paddingTop="40dp"
         android:paddingBottom="40dp"
         android:text="Pronosticos"
@@ -101,7 +101,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/boton_mapas"
+        app:layout_constraintStart_toEndOf="@+id/boton_maps2"
         app:layout_constraintTop_toBottomOf="@+id/boton_investigaciones" />
 
     <Button
@@ -122,13 +122,13 @@
         android:text="Eventos"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/boton_mapas"
+        app:layout_constraintBottom_toTopOf="@+id/boton_maps2"
         app:layout_constraintEnd_toStartOf="@+id/boton_investigaciones"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boton_boletines" />
 
     <Button
-        android:id="@+id/boton_mapas"
+        android:id="@+id/boton_maps2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -139,7 +139,7 @@
         android:backgroundTintMode="screen"
         android:drawableTop="@drawable/ic_maps_d"
         android:gravity="bottom|center"
-        android:onClick="verEventos"
+        android:onClick="verMapas"
         android:paddingTop="40dp"
         android:paddingBottom="40dp"
         android:text="Mapas"
@@ -149,4 +149,5 @@
         app:layout_constraintEnd_toStartOf="@+id/boton_pronosticos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boton_eventos" />
+
 </android.support.constraint.ConstraintLayout>

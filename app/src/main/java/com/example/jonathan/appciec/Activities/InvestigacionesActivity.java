@@ -6,8 +6,10 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.SearchView;
 
+import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,7 +24,6 @@ import com.example.jonathan.appciec.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
@@ -38,7 +39,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.android.volley.VolleyLog.TAG;
-
 
 public class InvestigacionesActivity extends AppCompatActivity {
 
@@ -74,6 +74,13 @@ public class InvestigacionesActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 mAdapter.getFilter().filter(newText);
+                TextView Tv = findViewById(R.id.searchMessage);
+                if (mPaperData.isEmpty()) {
+                    Tv.setVisibility(View.VISIBLE);
+                }
+                else {
+                    Tv.setVisibility(View.GONE);
+                }
                 return false;
             }
         });

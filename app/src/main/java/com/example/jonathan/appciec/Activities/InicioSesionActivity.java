@@ -2,17 +2,14 @@ package com.example.jonathan.appciec.Activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.jonathan.appciec.Models.SessionHandler;
 import com.example.jonathan.appciec.R;
 import com.google.android.gms.tasks.OnCompleteListener;
