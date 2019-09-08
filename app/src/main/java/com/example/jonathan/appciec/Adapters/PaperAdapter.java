@@ -17,14 +17,9 @@ import com.example.jonathan.appciec.Models.FirebaseConnector;
 import com.example.jonathan.appciec.Models.Paper;
 import com.example.jonathan.appciec.Models.SessionHandler;
 import com.example.jonathan.appciec.R;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import static com.android.volley.VolleyLog.TAG;
-
 
 public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> implements Filterable {
     // Member variables.
@@ -188,7 +183,7 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
         }
 
         public class MyClickListener implements View.OnClickListener {
-            public Paper paper;
+            private Paper paper;
 
             MyClickListener(Paper paper){
                 this.paper = paper;
