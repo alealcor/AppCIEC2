@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.jonathan.appciec.Adapters.PaperAdapter;
+import com.example.jonathan.appciec.Adapters.PaperFavoritoAdapter;
 import com.example.jonathan.appciec.Models.FirebaseConnector;
 import com.example.jonathan.appciec.Models.Paper;
 import com.example.jonathan.appciec.Models.SessionHandler;
@@ -40,11 +41,11 @@ import java.util.regex.Pattern;
 import static com.android.volley.VolleyLog.TAG;
 
 
-public class InvestigacionesActivity extends AppCompatActivity {
+public class InvestigacionesFavoritasActivity extends AppCompatActivity {
 
     private ArrayList<Paper> mPaperData;
     private ArrayList<Paper> mPaperComplete;
-    private PaperAdapter mAdapter;
+    private PaperFavoritoAdapter mAdapter;
     private FirebaseConnector fconnector;
     private Map favoritos;
     private SessionHandler shandler;
@@ -55,6 +56,7 @@ public class InvestigacionesActivity extends AppCompatActivity {
         this.fconnector = new FirebaseConnector();
         this.favoritos = new HashMap();
         this.shandler = new SessionHandler(this);
+        mAdapter = null;
         if (this.shandler.estaIniciado()){
             readData(new FirebaseCallback() {
                 @Override
@@ -63,8 +65,8 @@ public class InvestigacionesActivity extends AppCompatActivity {
                 }
             });
         }
-        setContentView(R.layout.activity_investigaciones);
-        SearchView searchView =  findViewById(R.id.searchView);
+        setContentView(R.layout.activity_investigaciones_favoritas);
+        SearchView searchView =  findViewById(R.id.searchView_fav);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -79,8 +81,7 @@ public class InvestigacionesActivity extends AppCompatActivity {
         });
 
         // Initialize the RecyclerView.
-        RecyclerView mRecyclerView = findViewById(R.id.recyclerView_Investigaciones);
-
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerView_Investigaciones_fav);
 
         // Set the Layout Manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -90,7 +91,8 @@ public class InvestigacionesActivity extends AppCompatActivity {
         mPaperComplete = new ArrayList<>();
         initializeData();
         // Initialize the adapter and set it to the RecyclerView.
-        mAdapter = new PaperAdapter(this, mPaperData, mPaperComplete, favoritos, fconnector,shandler);
+        mAdapter = new PaperFavoritoAdapter(this, mPaperData, mPaperComplete, favoritos, fconnector,shandler);
+        mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
@@ -123,94 +125,41 @@ public class InvestigacionesActivity extends AppCompatActivity {
     private interface FirebaseCallback{
         void onCallback(Map listado);
     }
-    private void initializeData() {
+    private void initializeData(){
         // Clear the existing data (to avoid duplication).
         mPaperData.clear();
+        getPapersFavoritos();
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://www.ciec.espol.edu.ec/rest/node/2";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String html = response.getJSONObject("body").getJSONArray("und").getJSONObject(0).getString("safe_value");
-                    getPapersPublicados(html);
-                    mAdapter.notifyDataSetChanged();
-
-                } catch (JSONException e) {
-                e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Log.e("Error","Server Error");
-            }
-
-
-        });
-
-        requestQueue.add(jsonObjectRequest);
 
     }
-    private void getPapersPublicados(String html){
-        Document doc = Jsoup.parse(html);
-        for (Element element : doc.select("*")) {
-            if (!element.hasText() && element.isBlock()) {
-                element.remove();
+    private void getPapersFavoritos(){
+        DatabaseReference data = fconnector.getReff_user().child(this.shandler.usuarioId()).child("Favoritos");
+        data.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChildren()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        String titulo = ((Map)ds.getValue()).get("titulo").toString();
+                        String autores = ((Map)ds.getValue()).get("autores").toString();
+                        String fecha = ((Map)ds.getValue()).get("fecha").toString();
+                        String journal = ((Map)ds.getValue()).get("journal").toString();
+                        String pais = ((Map)ds.getValue()).get("pais").toString();
+
+                        Paper paper = new Paper(titulo,autores, fecha, journal, pais);
+                        mPaperData.add(paper);
+                        mPaperComplete.add(paper);
+
+                    }
+                }
+                while(mAdapter==null){
+                }
+                mAdapter.notifyDataSetChanged();
             }
-        }
-        //noinspection NonAsciiCharacters
-        Elements años = doc.getElementsByTag("h1");
-
-        //noinspection NonAsciiCharacters
-        for (Element año:años ){
-
-            Elements ps = año.nextElementSiblings().select("p");
-            String titulo;
-            String autores;
-            String fecha;
-            String journal;
-            String pais;
-
-            for (int i=0; i<ps.size()-4; i+=4){
-                String regex_fecha =  "\\(([a-zA-Z]+,? [0-9]+)\\)";
-                String regex_pais = "\\(([a-zA-ZÀ-ÿ ]+)\\)";
-                Pattern p_fecha = Pattern.compile(regex_fecha); //(mes, año)
-                Pattern p_pais = Pattern.compile(regex_pais); //(pais)
-                titulo = ps.get(i).text();
-                titulo = titulo.replace("&nbsp;","");
-
-                while(titulo.equals("")){
-                    i++;
-                    titulo = ps.get(i).text();
-                }
-                titulo = titulo.replaceAll("[0-9]+\\. "  , "");
-
-                autores = ps.get(i+1).text();
-                Matcher m1 = p_fecha.matcher(autores);
-                autores = autores.replaceAll(regex_fecha,"" );
-                if (m1.find()) {
-                    fecha = m1.group(1);
-                }else{
-                    fecha = "no disponible";
-                }
-                journal = ps.get(i+2).text();
-
-                Matcher m2 = p_pais.matcher(journal);
-                journal = journal.replaceAll(regex_pais,"");
-                if (m2.find()) {
-                    pais = m2.group(1);
-                }else{
-                    pais = "no disponible";
-                }
-                Paper paper = new Paper(titulo,autores, fecha, journal, pais);
-                mPaperData.add(paper);
-                mPaperComplete.add(paper);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG,databaseError.getMessage());
             }
-        }
+        });
+
     }
 }

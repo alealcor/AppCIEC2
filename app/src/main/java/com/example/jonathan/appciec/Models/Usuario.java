@@ -1,11 +1,13 @@
 package com.example.jonathan.appciec.Models;
 
+import java.util.ArrayList;
+
 public class Usuario {
     private String nombre;
     private String apellido;
     private String correo;
     private String contrasenia;
-    private String token;
+    private ArrayList<String> favoritos;
 
     public Usuario() {
     }
@@ -42,11 +44,20 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public String getToken() {
-        return token;
+
+    public ArrayList<String> getFavoritos() {
+        return favoritos;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setFavoritos(ArrayList<String> favoritos) {
+        this.favoritos = favoritos;
+    }
+
+    public void agregarFavorito(String favorito){
+        this.favoritos.add(favorito);
+    }
+
+    public void eliminarFavorito(String favorito){
+        this.favoritos.add(favorito);
     }
 }

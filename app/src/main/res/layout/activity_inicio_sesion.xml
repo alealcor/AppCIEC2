@@ -34,14 +34,14 @@
 
     <EditText
         android:id="@+id/txtCorreo"
-        android:layout_width="240dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="58dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView8"
@@ -49,14 +49,14 @@
 
     <EditText
         android:id="@+id/txtContrasenia"
-        android:layout_width="240dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -64,23 +64,30 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
+        android:layout_width="108dp"
+        android:layout_height="40dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="11dp"
         android:text="Correo:"
+        android:textAlignment="viewStart"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/txtCorreo"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="102dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="108dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
         android:text="Contraseña:"
+        android:textAlignment="viewStart"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/txtContrasenia"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 

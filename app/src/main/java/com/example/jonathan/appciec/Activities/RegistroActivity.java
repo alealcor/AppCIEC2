@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,9 +21,11 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText txtCorreo,txtContrasenia,txtComprobacion;
-    private DatabaseReference reff;
+    private DatabaseReference reff_user;
     private Usuario usuario;
     private FirebaseAuth myAuth;
     private ProgressDialog progressDialog;
@@ -35,7 +38,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         txtContrasenia = findViewById(R.id.txtContrasenia);
         txtComprobacion = findViewById(R.id.txtComprobar);
         usuario = new Usuario();
-        reff = FirebaseDatabase.getInstance().getReference().child("Usuario");
+        reff_user = FirebaseDatabase.getInstance().getReference().child("Usuario");
         Button btnRegistrar = findViewById(R.id.btnRegistrar);
         Button btnLogin = findViewById(R.id.btnLogin);
         progressDialog = new ProgressDialog(this);
@@ -57,8 +60,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                     if (task.isSuccessful()) {
                         usuario.setCorreo(correo);
                         usuario.setContrasenia(contrasenia);
-                        usuario.setToken(myAuth.getCurrentUser().getUid());
-                        reff.push().setValue(usuario);
+                        reff_user.child(myAuth.getCurrentUser().getUid()).setValue(usuario);
                         Toast.makeText(RegistroActivity.this, "Registro creado exitosamente",
                                 Toast.LENGTH_SHORT).show();
                     } else {

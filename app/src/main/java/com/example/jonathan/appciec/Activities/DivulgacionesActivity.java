@@ -1,5 +1,7 @@
 package com.example.jonathan.appciec.Activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,8 +19,16 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.example.jonathan.appciec.Adapters.PaperAdapter;
+import com.example.jonathan.appciec.Models.FirebaseConnector;
 import com.example.jonathan.appciec.Models.Paper;
+import com.example.jonathan.appciec.Models.SessionHandler;
 import com.example.jonathan.appciec.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -27,8 +37,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.android.volley.VolleyLog.TAG;
 
 
 public class DivulgacionesActivity extends AppCompatActivity {
@@ -36,10 +50,26 @@ public class DivulgacionesActivity extends AppCompatActivity {
     private ArrayList<Paper> mPaperData;
     private ArrayList<Paper> mPaperComplete;
     private PaperAdapter mAdapter;
+    private FirebaseConnector fconnector;
+    private Map favoritos;
+    private SessionHandler shandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.favoritos = new HashMap();
+        this.shandler = new SessionHandler(this);
+        this.fconnector = new FirebaseConnector();
+        if (shandler.estaIniciado()){
+            Log.e("e","k");
+            readData(new FirebaseCallback() {
+                @Override
+                public void onCallback(Map listado) {
+                    favoritos = listado;
+                }
+            });
+        }
         setContentView(R.layout.activity_divulgaciones);
 
         SearchView searchView =  findViewById(R.id.searchView);
@@ -69,8 +99,7 @@ public class DivulgacionesActivity extends AppCompatActivity {
         initializeData();
 
         // Initialize the adapter and set it to the RecyclerView.
-        mAdapter = new PaperAdapter(this, mPaperData, mPaperComplete);
-
+        mAdapter = new PaperAdapter(this, mPaperData, mPaperComplete,favoritos,fconnector,shandler);
 
         mRecyclerView.setAdapter(mAdapter);
         RecyclerView.ItemDecoration itemDecoration = new
@@ -81,6 +110,30 @@ public class DivulgacionesActivity extends AppCompatActivity {
 
     }
 
+    private void readData(final FirebaseCallback firebaseCallback){
+        DatabaseReference data = fconnector.getReff_user().child(shandler.usuarioId()).child("Favoritos");
+        data.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChildren()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        String id = ds.getKey();
+                        String titulo = ((Map)ds.getValue()).get("titulo").toString();
+                        favoritos.put(titulo,id);
+                    }
+                }
+                firebaseCallback.onCallback(favoritos);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG,databaseError.getMessage());
+            }
+
+        });
+    }
+    private interface FirebaseCallback{
+        void onCallback(Map listado);
+    }
     private void initializeData() {
         // Clear the existing data (to avoid duplication).
         mPaperData.clear();
@@ -192,18 +245,10 @@ public class DivulgacionesActivity extends AppCompatActivity {
                     pais = "no disponible";
                 }
 
-
                 Paper paper = new Paper(titulo,autores, fecha, journal, pais);
                 mPaperData.add(paper);
                 mPaperComplete.add(paper);
-
             }
-
-
         }
-
     }
-
-
-
 }

@@ -89,9 +89,12 @@
         <item>@drawable/cafe_3</item>
     </array>
     <string name="Artículos">Articulos</string>
+    <string name="favoritos">Favoritos</string>
     <string name="Divulgaciones">Divulgaciones</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="login">Iniciar Sesión</string>
+    <string name="title_activity_investigaciones_favoritas">InvestigacionesFavoritasActivity
+    </string>
 
 </resources>

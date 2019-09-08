@@ -34,22 +34,23 @@
 
     <EditText
         android:id="@+id/txtCorreo"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="25dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        tools:layout_editor_absoluteY="40dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtContrasenia"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="25dp"
         android:ems="10"
         android:inputType="textPassword"
@@ -59,10 +60,10 @@
 
     <EditText
         android:id="@+id/txtComprobar"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="25dp"
         android:ems="10"
         android:inputType="textPassword"
@@ -72,10 +73,10 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_width="110dp"
+        android:layout_height="30dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:text="Correo:"
         android:textSize="18sp"
@@ -86,10 +87,10 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_width="110dp"
+        android:layout_height="30dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="8dp"
         android:text="Contraseña:"
         android:textSize="18sp"
@@ -100,10 +101,10 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="0dp"
+        android:layout_width="110dp"
         android:layout_height="45dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:text="Comprobar contraseña:"
         android:textSize="18sp"

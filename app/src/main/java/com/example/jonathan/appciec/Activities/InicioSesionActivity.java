@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.jonathan.appciec.Models.SessionHandler;
 import com.example.jonathan.appciec.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,7 +29,7 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
     private Button btnRegistro;
     private FirebaseAuth myAuth;
     private ProgressDialog progressDialog;
-    private String tkn;
+    private SessionHandler shandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,7 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         Button btnLogin = findViewById(R.id.btnLogin);
         btnRegistro = findViewById(R.id.btnRegistro);
         progressDialog = new ProgressDialog(this);
+        shandler = new SessionHandler(this);
         btnLogin.setOnClickListener(this);
         btnRegistro.setOnClickListener(this);
     }
@@ -48,14 +50,12 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         if (validarUsuario(correo) && validarContra(contrasenia)){
             progressDialog.setMessage("Realizando consulta");
             progressDialog.show();
-
             myAuth.signInWithEmailAndPassword(correo, contrasenia).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        tkn = myAuth.getCurrentUser().getUid();
-                        Log.e("token", tkn);
-                        guardarSesion();
+                        String tkn = myAuth.getCurrentUser().getUid();
+                        shandler.guardarSesion(correo,tkn);
                         Intent intent = new Intent(InicioSesionActivity.this, MainActivity.class);
                         startActivity(intent);
                     } else {
@@ -108,30 +108,6 @@ public class InicioSesionActivity extends AppCompatActivity implements View.OnCl
         }
         else{
             loguearUsuario();
-        }
-
-    }
-
-    public void guardarSesion(){
-        SharedPreferences preferencias = getSharedPreferences("Credenciales.sesion",MODE_PRIVATE);
-        String crr = txtCorreo.getText().toString().trim();;
-        Boolean logg = true;
-        SharedPreferences.Editor editor = preferencias.edit();
-        editor.putString("correo",crr);
-        editor.putString("token",this.tkn);
-        editor.putBoolean("log",logg);
-        editor.commit();
-    }
-
-    public void cargarSesion(){
-        SharedPreferences preferencias = getSharedPreferences("Credenciales.sesion",Context.MODE_PRIVATE);
-
-        if (preferencias.getBoolean("log",false)){
-            String crr = preferencias.getString("correo","No esta registrado");
-            String token = preferencias.getString("token","No esta registrado");
-        }
-        else{
-            Log.e("sesion","no hay sesion iniciada");
         }
     }
 }

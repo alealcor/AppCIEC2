@@ -1,8 +1,10 @@
 package com.example.jonathan.appciec.Adapters;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,21 +14,22 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.jonathan.appciec.Activities.Info_InvestigacionesActivity;
 import com.example.jonathan.appciec.Models.FirebaseConnector;
 import com.example.jonathan.appciec.Models.Paper;
 import com.example.jonathan.appciec.Models.SessionHandler;
 import com.example.jonathan.appciec.R;
-import java.io.IOException;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 import static com.android.volley.VolleyLog.TAG;
 
 
-public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> implements Filterable {
+public class PaperFavoritoAdapter extends RecyclerView.Adapter<PaperFavoritoAdapter.ViewHolder> implements Filterable {
     // Member variables.
     private final ArrayList<Paper> mPapersData;
     private final ArrayList<Paper> mPapersComplete;
@@ -35,7 +38,7 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
     private FirebaseConnector fconnector;
     private SessionHandler shandler;
 
-    public PaperAdapter(Context context, ArrayList<Paper> mPapersData, ArrayList<Paper> copy, Map favoritos, FirebaseConnector reff, SessionHandler shandler) {
+    public PaperFavoritoAdapter(Context context, ArrayList<Paper> mPapersData, ArrayList<Paper> copy, Map favoritos, FirebaseConnector reff, SessionHandler shandler) {
         this.mPapersData = mPapersData;
         this.mPapersComplete = copy;
         this.mContext = context;
@@ -46,7 +49,7 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public PaperAdapter.ViewHolder onCreateViewHolder(
+    public PaperFavoritoAdapter.ViewHolder onCreateViewHolder(
             @NonNull ViewGroup parent, int viewType) {
 
         return new ViewHolder(LayoutInflater.from(mContext).
@@ -54,12 +57,13 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PaperAdapter.ViewHolder holder,
+    public void onBindViewHolder(@NonNull PaperFavoritoAdapter.ViewHolder holder,
                                  int position) {
         // Get current Paper.
         Paper currentPaper = mPapersData.get(position);
 
         // Populate the textviews with data.
+
         holder.bindTo(currentPaper);
     }
 
@@ -71,6 +75,7 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return mPapersData.size();
+
     }
 
     static public boolean validateTitleSearchQuery(String query){
@@ -94,6 +99,7 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
         }
 
         return valido;
+
     }
 
     @Override
@@ -115,7 +121,6 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 String cleanFilterPattern = filterPattern.replaceAll( "[^a-zA-Z0-9 ]+" , "" );
                 if(validateTitleSearchQuery(cleanFilterPattern)) {
-                    Log.d("TAG", filterPattern);
                     for (Paper item : mPapersComplete) {
                         if (item.getTitulo().toLowerCase().contains(filterPattern)) {
 
@@ -195,11 +200,28 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
             }
             public void onClick(View v){
                 if(favoritos.containsKey(paper.getTitulo())){
-                    fconnector.eliminarFavorito(paper,shandler,favoritos);
-                    fav.setImageResource(R.drawable.ic_star_border_black_24dp);
-                }else{
-                    fconnector.agregarFavorito(paper,shandler,favoritos);
-                    fav.setImageResource(R.drawable.ic_star_black_24dp);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setTitle("Eliminar de Favoritos");
+                    builder.setMessage("Esta seguro de que desea borrar este registro?");
+                    builder.setCancelable(false);
+                    builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mPapersData.remove(paper);
+                            fconnector.eliminarFavorito(paper,shandler,favoritos);
+                            notifyDataSetChanged();
+                            fav.setImageResource(R.drawable.ic_star_border_black_24dp);
+                        }
+                    });
+
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+
+                    builder.show();
+
                 }
             }
 

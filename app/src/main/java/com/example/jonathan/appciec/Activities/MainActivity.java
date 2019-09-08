@@ -14,32 +14,46 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
 import com.example.jonathan.appciec.Fragments.*;
+import com.example.jonathan.appciec.Models.SessionHandler;
 import com.example.jonathan.appciec.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
+    private SessionHandler shandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        shandler = new SessionHandler(this);
+        NavigationView navigationView;
+        Toolbar toolbar;
+        TextView correo;
+        if (shandler.estaIniciado()){
+            setContentView(R.layout.activity_main_log);
+            toolbar = findViewById(R.id.toolbar_log);
+            setSupportActionBar(toolbar);
+            drawer = findViewById(R.id.drawer_layout_log);
+            navigationView = findViewById(R.id.nav_view_log);
+            correo = navigationView.getHeaderView(0).findViewById(R.id.user_email);
+            if (correo!=null){
+                correo.setText(shandler.usuarioCorreo());
+            }
+        }
+        else {
+            setContentView(R.layout.activity_main);
+            toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            drawer = findViewById(R.id.drawer_layout);
+            navigationView = findViewById(R.id.nav_view);
+        }
         navigationView.setNavigationItemSelectedListener(this);
-
-        ActionBarDrawerToggle  toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
                 new MenuFragment()).commit();
-        cargarSesion();
-
-
     }
 
     @Override
@@ -67,7 +81,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.cerrar_sesion:
-                cerrarSesion();
+                shandler.cerrarSesion();
+                recargarMain();
+                break;
+            case R.id.nav_favoritos:
+                Intent intentF = new Intent(this, InvestigacionesFavoritasActivity.class);
+                startActivity(intentF);
+                break;
             default:
                 break;
 
@@ -107,30 +127,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void cargarSesion(){
-        SharedPreferences preferencias = getSharedPreferences("Credenciales.sesion",Context.MODE_PRIVATE);
 
-        if (preferencias.getBoolean("log",false)){
-            String crr = preferencias.getString("correo","No esta registrado");
-            String token = preferencias.getString("token","No esta registrado");
-        }
-        else{
-            Log.e("sesion","no hay sesion iniciada");
-        }
-    }
-
-    public void cerrarSesion(){
-        SharedPreferences preferences = getSharedPreferences("Credenciales.sesion", Context.MODE_PRIVATE);
-        preferences.edit().putBoolean("log",false).apply();
-        preferences.edit().putString("correo",null).apply();
-        preferences.edit().putString("token",null).apply();
+    public void recargarMain(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
-    }
-    public boolean estaIniciado(){
-        SharedPreferences preferencias = getSharedPreferences("Credenciales.sesion",Context.MODE_PRIVATE);
-        return preferencias.getBoolean("log",false);
     }
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);

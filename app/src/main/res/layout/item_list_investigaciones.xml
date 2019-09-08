@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="351dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
         android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/title"
@@ -17,10 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_weight="2"
             android:padding="8dp"
             android:text="@string/placeholder"
             android:textSize="18sp" />
-
 
         <TextView
             android:id="@+id/subTitle"
@@ -29,15 +30,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
             android:padding="8dp"
             android:text="@string/placeholder" />
 
+
     </LinearLayout>
 
     <ImageView
         android:id="@+id/fav_imagen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="75dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
 </LinearLayout>
