@@ -2,6 +2,7 @@ package com.example.jonathan.appciec.Fragments;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.location.Location;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.google.gson.*;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +83,7 @@ public class MapasActivity extends Fragment implements GoogleMap.OnMyLocationBut
                 mMap.setOnMyLocationClickListener((GoogleMap.OnMyLocationClickListener) mMap.getMyLocation());
                 GeoJsonLayer layer = null;
                 try {
-                    layer = new GeoJsonLayer(mMap, R.raw.gye_barrios, getContext());
+                    layer = new GeoJsonLayer(mMap,R.raw.gye_barrios,getContext());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
