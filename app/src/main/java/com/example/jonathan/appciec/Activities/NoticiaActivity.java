@@ -22,8 +22,7 @@ public class NoticiaActivity extends AppCompatActivity {
         // Set the text from the Intent extra.
         titulo_noticia.setText(getIntent().getStringExtra("titulo_noticia"));
         contenido_noticia.setText(getIntent().getStringExtra("contenido_noticia"));
-        Glide.with(this).load(getIntent().getIntExtra("imagen_noticia",0))
-                .into(imagen_noticia);
+        Glide.with(this).load(getIntent().getStringExtra("imagen_noticia")).into(imagen_noticia);
 
 
     }

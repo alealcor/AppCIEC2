@@ -134,17 +134,17 @@ public class InvestigacionesActivity extends AppCompatActivity {
             }
         }
 
-        //noinspection NonAsciiCharacters
         Elements años = doc.getElementsByTag("h1");
 
-        //noinspection NonAsciiCharacters
         for (Element año:años ){
 
             Elements ps = año.nextElementSiblings().select("p");
             String titulo;
+            String link;
             String autores;
             String fecha;
             String journal;
+            String journal_link;
             String pais;
 
 
@@ -155,6 +155,9 @@ public class InvestigacionesActivity extends AppCompatActivity {
                 Pattern p_pais = Pattern.compile(regex_pais); //(pais)
                 titulo = ps.get(i).text();
                 titulo = titulo.replace("&nbsp;","");
+                link = ps.get(i).children().select("a").attr("href");
+
+                Log.d("tag", "getPapersPublicados: " + link);
 
                 while(titulo.equals("")){
                     i++;
@@ -171,7 +174,8 @@ public class InvestigacionesActivity extends AppCompatActivity {
                     fecha = "no disponible";
                 }
                 journal = ps.get(i+2).text();
-
+                journal_link = ps.get(i+2).select("a").attr("href");
+                Log.d("TAG", "getPapersPublicados: "+ journal_link);
                 Matcher m2 = p_pais.matcher(journal);
                 journal = journal.replaceAll(regex_pais,"");
                 if (m2.find()) {
@@ -181,7 +185,7 @@ public class InvestigacionesActivity extends AppCompatActivity {
                 }
 
 
-                Paper paper = new Paper(titulo,autores, fecha, journal, pais);
+                Paper paper = new Paper(titulo,link, autores, fecha, journal, pais, journal_link);
                 mPaperData.add(paper);
                 mPaperComplete.add(paper);
             }

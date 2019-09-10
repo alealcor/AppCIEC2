@@ -2,17 +2,19 @@ package com.example.jonathan.appciec.Models;
 
 public class Paper {
     private final String titulo;
+    private final String articleLink;
     private final String autores;
     private final String fecha;
     private final String journal;
     private final String pais;
-    // --Commented out by Inspection (1/20/2019 9:16 PM):private String link_journalOverview;
+    private final String link_journalOverview;
 
-    public Paper(String titulo, String autores, String fecha, String journal, String pais) {
+    public Paper(String titulo, String articleLink, String autores, String fecha, String journal, String pais, String link_journalOverview) {
         this.titulo = titulo;
+        this.articleLink = articleLink;
         this.autores = autores;
         this.fecha = fecha;
-//        String link1 = link;
+        this.link_journalOverview = link_journalOverview;
         this.journal = journal;
         this.pais = pais;
     }
@@ -39,13 +41,12 @@ public class Paper {
     public String getPais() {
         return pais;
     }
-//    public String getLink() {
-//        return link;
-//    }
-//
-//    public String getLink_journalOverview() {
-//        return link_journalOverview;
-//    }
+    public String getarticleLink() {
+        return articleLink;
+    }
+    public String getLink_journalOverview() {
+        return link_journalOverview;
+    }
 }
 
 

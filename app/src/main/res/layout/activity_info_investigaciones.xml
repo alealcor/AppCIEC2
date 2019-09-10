@@ -2,47 +2,50 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="48dp"
         tools:context="com.example.android.materialme.DetailActivity">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/titulo_label"
-            android:layout_marginStart="24dp"/>
+            android:layout_marginStart="24dp"
+            android:text="@string/titulo_label" />
+
         <TextView
             android:id="@+id/autor_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/autor_label"
+            android:layout_below="@id/titleDetail"
             android:layout_marginStart="24dp"
-            android:layout_below="@id/titleDetail"/>
+            android:text="@string/autor_label" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fecha_label"
             android:layout_below="@id/autoresDetail"
-            android:layout_marginStart="24dp"/>
+            android:layout_marginStart="24dp"
+            android:text="@string/fecha_label" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pais_label"
             android:layout_below="@id/fechaDetail"
-            android:layout_marginStart="24dp"/>
+            android:layout_marginStart="24dp"
+            android:text="@string/pais_label" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/PaisDetail"
-            android:text="@string/journal_label"
             android:layout_marginStart="24dp"
-             />
+            android:text="@string/journal_label" />
 
         <TextView
             android:id="@+id/autoresDetail"
@@ -52,8 +55,7 @@
             android:layout_below="@id/titleDetail"
             android:layout_toEndOf="@id/autor_label"
             android:padding="16dp"
-            android:text="@string/placeholder"
-             />
+            android:text="@string/placeholder" />
 
         <TextView
             android:id="@+id/titleDetail"
@@ -94,8 +96,43 @@
             android:padding="16dp"
             android:text="@string/placeholder" />
 
+        <Button
+            android:id="@+id/btnDownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/JournalDetail"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
 
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="96dp"
+            android:background="@color/colorPrimary"
+            android:padding="16dp"
+            android:text="Descargar"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnoverview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_below="@+id/btnDownload"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="96dp"
+            android:background="@color/colorPrimary"
+            android:padding="16dp"
+            android:text="Jornal Overview"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
 
 
     </RelativeLayout>
+
+
 </ScrollView>

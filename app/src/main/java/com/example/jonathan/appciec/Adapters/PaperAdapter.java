@@ -173,10 +173,12 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.ViewHolder> 
             Paper currentPaper = mPapersData.get(getAdapterPosition());
             Intent detailIntent = new Intent(mContext, Info_InvestigacionesActivity.class);
             detailIntent.putExtra("title", currentPaper.getTitulo());
+            detailIntent.putExtra("link", currentPaper.getarticleLink());
             detailIntent.putExtra("autores_paper", currentPaper.getAutores());
             detailIntent.putExtra("fecha_paper", currentPaper.getFecha());
             detailIntent.putExtra("pais_paper", currentPaper.getPais());
             detailIntent.putExtra("journal_paper", currentPaper.getJournal());
+            detailIntent.putExtra("overview_link", currentPaper.getLink_journalOverview());
             mContext.startActivity(detailIntent);
         }
     }

@@ -118,7 +118,7 @@
             android:onClick="verPronosticos"
             android:text="pronosticos"
             app:layout_constraintTop_toBottomOf="@+id/boton_investigaciones"
-
+            android:drawableTop="@drawable/ic_pronosticos_d"
             android:gravity="bottom|center"
             android:paddingTop="24dp"
             android:paddingBottom="32dp" app:layout_constraintStart_toEndOf="@+id/boton_maps2"

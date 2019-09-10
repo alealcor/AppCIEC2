@@ -93,7 +93,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHold
 
             // Load the images into the ImageView using the Glide library.
             Glide.with(mContext).load(
-                    currentNoticia.getImageResource()).into(mNoticiaImage);
+                    currentNoticia.getImageResource()).centerCrop().into(mNoticiaImage);
         }
 
         @Override
@@ -102,7 +102,6 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHold
             Intent detailIntent = new Intent(mContext, NoticiaActivity.class);
             detailIntent.putExtra("titulo_noticia", currentNoticia.getTitulo());
             detailIntent.putExtra("contenido_noticia", currentNoticia.getContenido());
-//            Log.d("ONCLICK", "onClick: " + currentNoticia.getContenido());
             detailIntent.putExtra("imagen_noticia",
                     currentNoticia.getImageResource());
             mContext.startActivity(detailIntent);
