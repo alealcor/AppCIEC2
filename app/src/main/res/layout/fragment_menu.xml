@@ -125,8 +125,7 @@
         app:layout_constraintBottom_toTopOf="@+id/boton_maps2"
         app:layout_constraintEnd_toStartOf="@+id/boton_investigaciones"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boton_boletines" />
-
+        app:layout_constraintTop_toBottomOf="@+id/boton_boletines"/>
     <Button
         android:id="@+id/boton_maps2"
         android:layout_width="0dp"

@@ -5,11 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import com.example.jonathan.appciec.Activities.BoletinesPoliticaActivity;
+import com.example.jonathan.appciec.Activities.OtrosBoletinesActivity;
 import com.example.jonathan.appciec.R;
 
 public class BoletinesFragment extends Fragment implements View.OnClickListener {
@@ -32,7 +34,7 @@ public class BoletinesFragment extends Fragment implements View.OnClickListener 
                 verBoletines();
                 break;
             case R.id.button_otros:
-                verBoletines();
+                verOtrosBoletines();
                 break;
         }
     }
@@ -41,11 +43,9 @@ public class BoletinesFragment extends Fragment implements View.OnClickListener 
         Intent intent = new Intent(getActivity(), BoletinesPoliticaActivity.class);
         startActivity(intent);
     }
-
-    public void verArticulosDivulgacion(){
-        Intent intent = new Intent(getActivity(), BoletinesPoliticaActivity.class);
+    private void verOtrosBoletines(){
+        Intent intent = new Intent(getActivity(), OtrosBoletinesActivity.class);
         startActivity(intent);
-
     }
 
 

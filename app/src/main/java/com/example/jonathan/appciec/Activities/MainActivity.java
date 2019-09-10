@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_favoritos:
                 Intent intentF = new Intent(this, InvestigacionesFavoritasActivity.class);
                 startActivity(intentF);
+                break;
             case R.id.nav_mapas:
                 fragment = new MapasActivity();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,fragment).commit();

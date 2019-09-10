@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:text="@string/placeholder"
-                />
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imagen_noticia"
@@ -38,12 +38,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imagen_noticia"
-                android:padding="16dp"
+                android:justificationMode="inter_word"
+                android:padding="20dp"
                 android:text="@string/placeholder"
+                android:textAlignment="viewStart"
 
-                />
-
-
+                android:textSize="18dp" />
         </RelativeLayout>
     </ScrollView>
 

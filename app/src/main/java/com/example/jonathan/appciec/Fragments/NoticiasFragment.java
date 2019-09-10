@@ -1,117 +1,143 @@
 package com.example.jonathan.appciec.Fragments;
-
-import android.content.res.TypedArray;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.jonathan.appciec.Models.Noticia;
+import android.widget.ProgressBar;
+
 import com.example.jonathan.appciec.Adapters.NoticiaAdapter;
+import com.example.jonathan.appciec.Models.Noticia;
 import com.example.jonathan.appciec.R;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class NoticiasFragment extends Fragment {
 
     private ArrayList<Noticia> mNoticiasData;
     private NoticiaAdapter mAdapter;
+    private RecyclerView mRecyclerView;
+    private ProgressBar progressBar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_noticias, container, false);
-        RecyclerView mRecyclerView = rootView.findViewById(R.id.recyclerView_Noticias);
+        mRecyclerView = rootView.findViewById(R.id.recyclerView_Noticias);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        this.mNoticiasData = new ArrayList<>();
-        mAdapter = new NoticiaAdapter(getActivity(), this.mNoticiasData);
+        progressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+        mNoticiasData = new ArrayList<>();
+        mAdapter = new NoticiaAdapter(getActivity(), mNoticiasData);
+        mRecyclerView.setAdapter(mAdapter);
         return rootView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // Initialize the RecyclerView.
-        // Member variables.
-        RecyclerView mRecyclerView = getView().findViewById(R.id.recyclerView_Noticias);
-
-        // Set the Layout Manager.
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        // Initialize the ArrayList that will contain the data.
-        this.mNoticiasData = new ArrayList<>();
-
-        // Initialize the adapter and set it to the RecyclerView.
-        mAdapter = new NoticiaAdapter(getActivity(), this.mNoticiasData);
-        mRecyclerView.setAdapter(mAdapter);
-
-        // Get the data.
-        initializeData();
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        new DataAsyncTask().execute();
     }
 
-//    private void initializeData() {
-//        // Clear the existing data (to avoid duplication).
-//        mNoticiasData.clear();
-//
-//        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-//        String url = "http://www.ciec.espol.edu.ec/rest/node/20";
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-//
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                try {
-//                    String html = response.getJSONObject("body").getJSONArray("und").getJSONObject(0).getString("safe_value");
-//                    mNoticiasData(html);
-//                    mAdapter.notifyDataSetChanged();
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//                Log.e("Error","Server Error");
-//            }
-//
-//
-//        });
-//
-//        requestQueue.add(jsonObjectRequest);
-//
-//    }
+    class DataAsyncTask extends AsyncTask<String, Void, String>
+    {
 
-    private void initializeData() {
-        // Get the resources from the XML file.
-        String[] NoticiasList = getResources()
-                .getStringArray(R.array.titulos_noticias);
-        String[] NoticiasInfo = getResources()
-                .getStringArray(R.array.contenido_noticias);
-        TypedArray NoticiasImageResources = getResources()
-                .obtainTypedArray(R.array.imagenes_noticias);
-
-        // Clear the existing data (to avoid duplication).
-       this.mNoticiasData.clear();
-
-        // Create the ArrayList of Noticia objects with the titles and
-        // information about each Noticia
-        for (int i = 0; i < NoticiasList.length; i++) {
-            mNoticiasData.add(new Noticia(NoticiasList[i], NoticiasInfo[i],
-                    NoticiasImageResources.getResourceId(i, 0)));
-//            Log.d("SAVING", "initializeData: " + NoticiasInfo[i]);
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
         }
 
-        // Recycle the typed array.
-        NoticiasImageResources.recycle();
+        @Override
+        protected String doInBackground(String... params)
+        {
+            initializeData();
+            return "executed";
+        }
 
-        // Notify the adapter of the change.
-        mAdapter.notifyDataSetChanged();
+        @Override
+        protected void onPostExecute(String result) {
+            progressBar.setVisibility(View.GONE);
+
+            mAdapter.notifyDataSetChanged();
+
+
+        }
+
+    }
+
+    private void initializeData() {
+        Document doc = null;
+        String mainurl = "http://www.ciec.espol.edu.ec";
+        String url = "http://www.ciec.espol.edu.ec/noticias";
+
+        try {
+            doc = Jsoup.connect(url).get();
+        } catch (IOException e) {
+            Log.e("tag", e.getMessage(), e);
+        }
+        Elements articles = doc.select("article");
+
+
+        for (Element article : articles) {
+            String title = article.select("h2").text();
+            String imgLink = mainurl + article.select("img").attr("src");
+            String articleLink = mainurl + article.select("a").attr("href");
+            Document noticiaDoc = null;
+            try {
+                noticiaDoc = Jsoup.connect(articleLink).get();
+            } catch (IOException e) {
+            }
+            String content = noticiaDoc.select("article").text();
+
+            Noticia noticia = new Noticia(title, content, imgLink);
+            mNoticiasData.add(noticia);
+        }
+        Elements nextPage = doc.select("#block-system-main > div > div.text-center > ul > li.next > a");
+
+        while (nextPage.size() == 1) {
+            String newUrl = mainurl + nextPage.attr("href");
+            try {
+
+
+                doc = Jsoup.connect(newUrl).get();
+
+
+            } catch (IOException e) {
+            }
+            articles = doc.select("article");
+            for (Element article : articles) {
+                //                Document noticiaDoc = null;
+                String title = article.select("h2").text();
+                String imgLink = mainurl + article.select("img").attr("src");
+                String articleLink = mainurl + article.select("a").attr("href");
+                Document noticiaDoc = null;
+                try {
+                    noticiaDoc = Jsoup.connect(articleLink).get();
+                } catch (IOException e) {
+                }
+                String content = noticiaDoc.select("article").text();
+                Noticia noticia = new Noticia(title, content, imgLink);
+                mNoticiasData.add(noticia);
+            }
+            nextPage = doc.select("#block-system-main > div > div.text-center > ul > li.next > a");
+        }
     }
 }

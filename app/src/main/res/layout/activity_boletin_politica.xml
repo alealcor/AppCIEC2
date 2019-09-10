@@ -13,13 +13,13 @@
             tools:layout_editor_absoluteX="31dp">
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView_Boletines"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_marginBottom="24dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-        />
+            android:id="@+id/recyclerView_Boletines"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

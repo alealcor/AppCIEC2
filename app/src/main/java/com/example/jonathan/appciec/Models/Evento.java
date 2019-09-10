@@ -1,13 +1,13 @@
 package com.example.jonathan.appciec.Models;
 
 public class Evento {
-    private final int imageResource;
+    private final String img_url;
 
-    public Evento(int imageResource) {
-        this.imageResource = imageResource;
+    public Evento(String img_url) {
+        this.img_url = img_url;
     }
 
-    public int getImageResource() {
-        return imageResource;
+    public String getImageResource() {
+        return img_url;
     }
 }

@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/Imagen_Noticia"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/placeholder" />
 
@@ -25,7 +25,9 @@
             android:padding="8dp"
             android:layout_alignBottom="@id/Imagen_Noticia"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            android:text="@string/placeholder" />
+            android:text="@string/placeholder"
+            android:shadowColor="#000000"
+            android:shadowRadius="8"/>
 
 
     </RelativeLayout>
