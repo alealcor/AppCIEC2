@@ -22,19 +22,16 @@
 
         <item android:title="@string/Artículos"
             android:id="@+id/nav_articulos"
-            android:icon="@drawable/ic_articulos" />
+            android:icon="@drawable/ic_articulos_d" />
 
-        <group >
-            <item
-                android:id="@+id/nav_mapas"
-                android:icon="@drawable/ic_maps"
-                android:title="@string/mapas" />
-            <item android:title="Población" />
-        </group>
+        <item android:title="@string/mapas"
+              android:id="@+id/nav_mapas"
+              android:icon="@drawable/ic_maps_d" />
 
-        <item android:title="@string/pron_sticos"
-            android:id="@+id/nav_pronosticos"
-            android:icon="@drawable/ic_pronosticos" />
+        <item android:title="pronosticos"
+              android:id="@+id/nav_pronosticos"
+                android:icon="@drawable/ic_pronosticos_d"
+               />
 
     </group>
 

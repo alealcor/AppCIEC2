@@ -35,10 +35,12 @@
             <TextView
                 android:id="@+id/contenido_noticia"
                 style="@style/TextAppearance.AppCompat.Subhead"
+                android:justificationMode="inter_word"
+                android:textSize="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imagen_noticia"
-                android:padding="16dp"
+                android:padding="42dp"
                 android:text="@string/placeholder"
 
                 />

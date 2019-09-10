@@ -144,8 +144,10 @@ public class InvestigacionesFavoritasActivity extends AppCompatActivity {
                         String fecha = ((Map)ds.getValue()).get("fecha").toString();
                         String journal = ((Map)ds.getValue()).get("journal").toString();
                         String pais = ((Map)ds.getValue()).get("pais").toString();
+                        String articleLink = ((Map)ds.getValue()).get("articleLink").toString();
+                        String journalLink = ((Map)ds.getValue()).get("link_journalOverview").toString();
 
-                        Paper paper = new Paper(titulo,autores, fecha, journal, pais);
+                        Paper paper = new Paper(titulo, articleLink,autores, fecha, journal, pais, journalLink);
                         mPaperData.add(paper);
                         mPaperComplete.add(paper);
 
