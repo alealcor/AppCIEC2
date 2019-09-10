@@ -73,4 +73,5 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.opencsv:opencsv:3.9'
     implementation 'com.google.code.gson:gson:2.8.4'
+    testImplementation 'com.github.IvanShafran:shared-preferences-mock:1.0'
 }

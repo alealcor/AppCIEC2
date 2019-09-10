@@ -29,9 +29,13 @@ public class MainActivityTest {
 
     @Test
     public void verNoticias() {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        assertEquals("com.example.jonathan.appciec", appContext.getPackageName());
     }
 
     @Test
     public void verInvestigaciones() {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        assertEquals("com.example.jonathan.appciec", appContext.getPackageName());
     }
 }

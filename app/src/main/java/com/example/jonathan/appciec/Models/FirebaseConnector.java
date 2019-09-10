@@ -26,7 +26,6 @@ public class FirebaseConnector {
         DatabaseReference nuevo = this.reff_user.child(shandler.usuarioId()).child("Favoritos").push();
         nuevo.setValue(paper);
         favoritos.put(paper.getTitulo(),nuevo.getKey());
-        Log.e("",favoritos.toString());
     }
 
     public void eliminarFavorito(Paper paper, SessionHandler shandler,Map favoritos){
