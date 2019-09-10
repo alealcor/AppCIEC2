@@ -99,7 +99,6 @@ public class BoletinAdapter extends RecyclerView.Adapter<BoletinAdapter.ViewHold
         void bindTo(Boletin boletin) throws IOException {
             // Populate the textviews with data.
             titulo.setText(boletin.getInformacion());
-            Log.e("img",boletin.getUrl_img());
             Glide.with(mContext).load(boletin.getUrl_img()).into(url_imagen);
         }
 

@@ -26,6 +26,12 @@ public class SessionHandler {
     }
     public boolean guardarSesion(String correo, String token){
         try {
+            if (correo==null || correo.trim() ==""){
+                return false;
+            }
+            if (token==null || token.trim() ==""){
+                return false;
+            }
             SharedPreferences preferencias = mContext.getSharedPreferences("Credenciales.sesion",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferencias.edit();
             editor.putString("correo",correo);

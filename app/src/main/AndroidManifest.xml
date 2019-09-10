@@ -48,6 +48,10 @@
             android:label="Información"
             android:parentActivityName=".Activities.InvestigacionesActivity" />
         <activity
+            android:name=".Activities.OtrosBoletinesActivity"
+            android:label="Otros boletines"
+            android:parentActivityName=".Activities.BoletinesPoliticaActivity" />
+        <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>

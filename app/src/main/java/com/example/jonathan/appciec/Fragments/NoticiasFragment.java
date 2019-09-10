@@ -55,9 +55,6 @@ public class NoticiasFragment extends Fragment {
             StrictMode.setThreadPolicy(policy);
         }
         new DataAsyncTask().execute();
-
-
-
     }
 
     class DataAsyncTask extends AsyncTask<String, Void, String>
@@ -78,7 +75,6 @@ public class NoticiasFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             progressBar.setVisibility(View.GONE);
-            Log.d("TAG", "onPostExecute: " + result);
 
             mAdapter.notifyDataSetChanged();
 
@@ -89,8 +85,6 @@ public class NoticiasFragment extends Fragment {
 
     private void initializeData() {
         Document doc = null;
-
-
         String mainurl = "http://www.ciec.espol.edu.ec";
         String url = "http://www.ciec.espol.edu.ec/noticias";
 
@@ -140,20 +134,10 @@ public class NoticiasFragment extends Fragment {
                 } catch (IOException e) {
                 }
                 String content = noticiaDoc.select("article").text();
-
-
                 Noticia noticia = new Noticia(title, content, imgLink);
                 mNoticiasData.add(noticia);
-                Log.d("title", title);
             }
             nextPage = doc.select("#block-system-main > div > div.text-center > ul > li.next > a");
-            Log.d("tag", String.valueOf(mNoticiasData.size()));
-
-
-
         }
-
-
     }
-
 }
