@@ -94,7 +94,33 @@
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="login">Iniciar Sesión</string>
+    <string name="home">Inicio</string>
     <string name="title_activity_investigaciones_favoritas">InvestigacionesFavoritasActivity
     </string>
-
+    <string name="pob_bar">Población total</string>
+    <string name="pob_bar_ninos">Número de niños de 0 a 5 años</string>
+    <string name="pob_bar_adolescentes">Número de niños de 5 a 17 años</string>
+    <string name="pob_bar_ancianos">Número de adultos mayores a 65 años</string>
+    <string name="den_pob">Densidad poblacional por hogar a nivel</string>
+    <string name="prom_trab">Promedio de trabajadores por hogar</string>
+    <string name="trab_bar">Trabajadores</string>
+    <string name="prop_trab">Proporción de trabajadores</string>
+    <string name="pob_bach">Población con bachillerato</string>
+    <string name="prop_bach">Proporción de la poblacion con bachillerato</string>
+    <string name="pob_sup">Población con instrucción superior</string>
+    <string name="prop_sup">Proporción de la población con instrucción superior</string>
+    <string name="pob_post">Población con postgrado</string>
+    <string name="prop_post">Proporción de la población con postgrado</string>
+    <string name="esco_prom">Escolaridad promedio de la población</string>
+    <string name="pob_may_17">Población mayor a 17 años con bachillerato</string>
+    <string name="prop_may_17">Proporción de la población mayor a 17 años con bachillerato</string>
+    <string name="pob_may_24">Población mayor a 24 años con instrucción superior</string>
+    <string name="prop_may_24">Proporción de la población mayor a 24 años con instrución superior</string>
+    <string name="disc_bar">Dispacapacidad</string>
+    <string name="pob_tec">Población con acceso a tecnología</string>
+    <string name="prop_tec">Proporción de población con acceso a tecnología</string>
+    <string name="mig_inter">Migración internacional</string>
+    <string name="mig_nac">Migración nacional</string>
+    <string name="pop_mig_inter">Proporción de migración internacional</string>
+    <string name="pop_mig_nac">Proporción de migración nacional</string>
 </resources>

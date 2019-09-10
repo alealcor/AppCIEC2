@@ -3,12 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.jonathan.appciec">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.LOCATION_HARDWARE.location.gps"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.LOCATION_HARDWARE.location.gps" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -22,20 +26,19 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBQ2LwT5KNmCDCuP7jwGrnM9-fZsEGA1XQ" />
+
         <activity
             android:name=".Activities.InicioSesionActivity"
             android:label="@string/inicio_sesion"
-            android:parentActivityName=".Activities.InicioSesionActivity"></activity>
+            android:parentActivityName=".Activities.InicioSesionActivity" />
         <activity
             android:name=".Activities.NoticiaActivity"
             android:label="@string/noticias"
-            android:parentActivityName=".Activities.NoticiaActivity"></activity>
-
+            android:parentActivityName=".Activities.NoticiaActivity" />
         <activity
             android:name=".Activities.PronosticosActivity"
             android:label="Pronostico"
-            android:parentActivityName=".Activities.MainActivity">
-        </activity>
+            android:parentActivityName=".Activities.MainActivity"></activity>
         <activity
             android:name=".Activities.RegistroActivity"
             android:label="@string/registro"
@@ -47,7 +50,6 @@
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,7 +59,6 @@
         <activity
             android:name=".Activities.InvestigacionesActivity"
             android:label="@string/investigaciones">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,7 +68,6 @@
         <activity
             android:name=".Activities.BoletinesPoliticaActivity"
             android:label="Boletines Politica Economica">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -77,7 +77,6 @@
         <activity
             android:name=".Activities.DivulgacionesActivity"
             android:label="@string/Divulgaciones">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -87,20 +86,16 @@
         <activity
             android:name=".Activities.ConfiguracionesActivity"
             android:label="@string/configuraciones">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Activities.InvestigacionesFavoritasActivity"
             android:label="@string/title_activity_investigaciones_favoritas"
-            android:theme="@style/AppTheme"></activity>
-
+            android:theme="@style/AppTheme" />
     </application>
-    <uses-feature
-            android:glEsVersion="0x00020000"
-            android:required="true"/>
 
 </manifest>

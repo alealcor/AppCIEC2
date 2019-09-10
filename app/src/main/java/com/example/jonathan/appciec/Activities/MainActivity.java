@@ -1,6 +1,5 @@
 package com.example.jonathan.appciec.Activities;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -90,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intentF);
                 break;
             case R.id.nav_mapas:
-                fragment = new MapasActivity();
+                fragment = new MapasFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,fragment).commit();
                 break;
             case R.id.nav_pronosticos:
@@ -143,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     public void verMapas(View view){
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,
-                new MapasActivity()).commit();
+                new MapasFragment()).commit();
 
     }
 

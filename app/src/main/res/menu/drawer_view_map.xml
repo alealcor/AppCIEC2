@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="nav_view_map">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/back"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="@string/home"/>
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="@string/pob_bar"/>
+        <item
+            android:id="@+id/nav_boletines"
+            android:icon="@drawable/ic_boletin"
+            android:title="@string/pob_bar_ninos" />
+        <item
+            android:id="@+id/nav_noticias"
+            android:icon="@drawable/ic_noticias"
+            android:title="@string/pob_bar_adolescentes" />
+        <item
+            android:id="@+id/nav_eventos"
+            android:icon="@drawable/ic_eventos"
+            android:title="@string/pob_bar_ancianos" />
+
+        <item android:title="@string/den_pob"
+            android:id="@+id/nav_articulos"
+            android:icon="@drawable/ic_articulos_d" />
+
+        <item android:title="@string/prom_trab"
+              android:id="@+id/nav_mapas"
+              android:icon="@drawable/ic_maps_d" />
+
+        <item android:title="@string/trab_bar"
+        android:id="@+id/nav_option"
+        android:icon="@drawable/ic_pronosticos_d"
+        />
+
+        <item android:title="@string/pob_bach"
+            android:id="@+id/nav_pob_bach"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+        <item android:title="@string/prop_bach"
+        android:id="@+id/nav_proporcion"
+        android:icon="@drawable/ic_pronosticos_d"
+        />
+
+        <item android:title="@string/prop_sup"
+            android:id="@+id/nav_propor_sup"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/pob_sup"
+            android:id="@+id/nav_studio"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/prop_post"
+            android:id="@+id/nav_proporcion_postgrado"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/pob_post"
+            android:id="@+id/nav_proporcion_post"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/esco_prom"
+            android:id="@+id/nav_proporcion_prom"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/pob_may_17"
+            android:id="@+id/nav_pob_17"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/prop_may_17"
+            android:id="@+id/nav_prop_27"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/prop_may_24"
+            android:id="@+id/nav_proporcion_sup"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/pob_may_24"
+            android:id="@+id/nav_proporcion_sub"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/disc_bar"
+            android:id="@+id/nav_discapacidad"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+
+        <item android:title="@string/prop_tec"
+            android:id="@+id/nav_proporcion_tecnologia"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/pob_tec"
+            android:id="@+id/nav_poblacion_tecnologia"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+        <item android:title="@string/mig_inter"
+            android:id="@+id/nav_proporcion_migracion_inter"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+        <item android:title="@string/mig_nac"
+            android:id="@+id/nav_proporcion_migracion_nac"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+        <item android:title="@string/pop_mig_inter"
+            android:id="@+id/nav_migracion_inter"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+        <item android:title="@string/pop_mig_nac"
+            android:id="@+id/nav_migracion_nac"
+            android:icon="@drawable/ic_pronosticos_d"
+            />
+
+    </group>
+
+</menu>
