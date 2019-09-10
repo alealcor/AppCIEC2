@@ -24,10 +24,13 @@
             android:id="@+id/nav_articulos"
             android:icon="@drawable/ic_articulos" />
 
-        <item
-            android:id="@+id/nav_mapas"
-            android:icon="@drawable/ic_maps"
-            android:title="@string/mapas" />
+        <group >
+            <item
+                android:id="@+id/nav_mapas"
+                android:icon="@drawable/ic_maps"
+                android:title="@string/mapas" />
+            <item android:title="Población" />
+        </group>
 
         <item android:title="@string/pron_sticos"
             android:id="@+id/nav_pronosticos"
