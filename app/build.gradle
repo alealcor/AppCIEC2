@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'jacoco-android'
+//apply plugin: 'jacoco-android'
+apply plugin: 'com.hiya.jacoco-android'
 
 android {
     compileSdkVersion 28
